@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Courses | Fluent & Fearless Spoken English</title>
+    <meta name="description" content="Explore our offline communication programs in Ranchi: Spoken English, Public Speaking, Pronunciation, and Personality Development." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        'secondary-blue': '#004B87',
+                        'ev-black': '#0F172A',
+                        'ev-white': '#FFFFFF',
+                        'on-surface': '#0F172A',
+                        'on-surface-variant': '#475569',
+                        'surface': '#F8FAFC',
+                        'outline-variant': '#E2E8F0',
+                        'primary-fixed': '#FFE8E0',
+                    },
+                    fontFamily: {
+                        sans: ['Merriweather', 'serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-sans text-ev-black bg-white antialiased">
+
+<!-- Header / Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
+    <input type="checkbox" id="mobile-menu-toggle" />
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="font-display font-black text-2xl tracking-tight text-secondary-blue">
+                    Fluent <span class="text-primary">&</span> Fearless
+                </span>
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Home</a>
+                <a href="about.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">About Us</a>
+                <a href="courses.html" class="font-display text-sm font-semibold text-primary">Courses</a>
+                <a href="testimonials.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Testimonials</a>
+                <a href="gallery.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Gallery</a>
+                <a href="contact.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Contact Us</a>
+                <a href="dashboard.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors bg-secondary-blue/10 text-secondary-blue px-3.5 py-1.5 rounded-full hover:bg-secondary-blue hover:text-white transition-all">Student Portal</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="online-practice.html" class="hidden sm:inline-flex bg-gradient-to-r from-primary to-[#FF8C61] hover:from-primary hover:to-primary text-white font-display text-sm font-bold px-7 py-3 rounded-full shadow-md hover:shadow-lg transition-all">
+                    Start Speaking Online
+                </a>
+                <button type="button" onclick="document.getElementById('mobile-menu-toggle').checked = !document.getElementById('mobile-menu-toggle').checked" class="lg:hidden flex items-center justify-center w-11 h-11 text-on-surface cursor-pointer rounded-full hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6 hamburger-open" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg class="w-6 h-6 hamburger-close" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu lg:hidden py-4 border-t border-outline-variant bg-white">
+            <div class="flex flex-col gap-2">
+                <a href="index.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Home</a>
+                <a href="about.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">About Us</a>
+                <a href="courses.html" class="block px-4 py-3 font-display text-base font-semibold text-primary rounded-xl">Courses</a>
+                <a href="testimonials.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Testimonials</a>
+                <a href="gallery.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl transition-all">Gallery</a>
+                <a href="contact.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Contact Us</a>
+                <a href="dashboard.html" class="block px-4 py-3 font-display text-base font-semibold text-secondary-blue hover:bg-slate-50 rounded-xl transition-all">Student Portal</a>
+                <a href="online-practice.html" class="block text-center mt-3 bg-gradient-to-r from-primary to-[#FF8C61] text-white font-display font-bold py-3.5 rounded-full">Start Speaking Online</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="py-16 sm:py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="font-display text-sm font-bold text-primary uppercase tracking-wider">Ranchi Center</span>
+            <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-secondary-blue mt-3 mb-6">
+                Our Offline Training Programs
+            </h1>
+            <p class="text-on-surface-variant text-lg">
+                Explore our specialized curriculum designed to take you from a hesitant speaker to an impactful communicator.
+            </p>
+        </div>
+
+        <div class="space-y-12">
+            <!-- Program 1 -->
+            <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div data-page-image-wrapper class="lg:col-span-4">
+                    <img data-page-image="courses.spoken" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" alt="Spoken English" class="w-full h-56 object-cover rounded-2xl" />
+                </div>
+                <div class="lg:col-span-8">
+                    <h3 class="font-display font-bold text-2xl text-secondary-blue">1. Spoken English (Beginner to Advanced)</h3>
+                    <p class="text-on-surface-variant leading-relaxed mt-3">
+                        Ideal for individuals who can understand English but freeze when speaking. We cover absolute sentence structuring, basic grammar clarifications, active daily debate practices, and real-life dialogue simulation.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4 text-xs font-semibold text-slate-500">
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">⏳ Duration: 3 Months</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">👥 Batch Size: Max 15 students</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">🕒 Batches: Morning & Evening</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program 2 -->
+            <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div data-page-image-wrapper class="lg:col-span-4">
+                    <img data-page-image="courses.public" src="https://images.unsplash.com/photo-1475721028314-398032120db0?auto=format&fit=crop&w=400&q=80" alt="Public Speaking" class="w-full h-56 object-cover rounded-2xl" />
+                </div>
+                <div class="lg:col-span-8">
+                    <h3 class="font-display font-bold text-2xl text-secondary-blue">2. Public Speaking & Oratory</h3>
+                    <p class="text-on-surface-variant leading-relaxed mt-3">
+                        Designed to crush stage fright. Students learn to frame speech structures, engage diverse audiences, master body gestures, and leverage vocal variety to command authority on stage.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4 text-xs font-semibold text-slate-500">
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">⏳ Duration: 2 Months</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">🎤 Focus: Podium & Stage Practice</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">📅 Schedule: Weekends only</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program 3 -->
+            <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div data-page-image-wrapper class="lg:col-span-4">
+                    <img data-page-image="courses.pronunciation" src="https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?auto=format&fit=crop&w=400&q=80" alt="Pronunciation" class="w-full h-56 object-cover rounded-2xl" />
+                </div>
+                <div class="lg:col-span-8">
+                    <h3 class="font-display font-bold text-2xl text-secondary-blue">3. Pronunciation Correction</h3>
+                    <p class="text-on-surface-variant leading-relaxed mt-3">
+                        Neutralize your regional accents (MTI) and perfect standard English vowel & consonant sounds. This course uses intensive phonetic practice to ensure clarity in every word.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4 text-xs font-semibold text-slate-500">
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">⏳ Duration: 1 Month</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">🗣️ Focus: Accent Neutralization</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">⚡ Format: Intensive Workshops</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Program 4 -->
+            <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div data-page-image-wrapper class="lg:col-span-4">
+                    <img data-page-image="courses.personality" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Personality Development" class="w-full h-56 object-cover rounded-2xl" />
+                </div>
+                <div class="lg:col-span-8">
+                    <h3 class="font-display font-bold text-2xl text-secondary-blue">4. Personality Development</h3>
+                    <p class="text-on-surface-variant leading-relaxed mt-3">
+                        Grooming, mock corporate interviews, professional body language, and table etiquettes. Expand your self-esteem and build an impactful persona for the workplace.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4 text-xs font-semibold text-slate-500">
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">⏳ Duration: 2 Months</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">💼 Focus: Mock Interviews & Dressing</span>
+                        <span class="bg-slate-100 px-3 py-1.5 rounded-full">👔 Ideal for: Job Seekers & Corporates</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-secondary-blue text-white py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold mb-4">Start your fearless English journey today!</h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-lg mx-auto">Get connected with top speaking trainers in Ranchi. Transform your life in 3 months.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-slate-800 text-center md:text-left">
+            <div>
+                <h3 class="font-display font-extrabold text-xl text-white mb-4">Fluent & Fearless</h3>
+                <p class="text-slate-400 text-sm">Ranchi's premier academy for English Fluency, Oratory Arts, and Professional Personality Grooming.</p>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                <div class="flex flex-col gap-2.5">
+                    <a href="index.html" class="text-slate-400 hover:text-white transition-colors text-sm">Home</a>
+                    <a href="about.html" class="text-slate-400 hover:text-white transition-colors text-sm">About Us</a>
+                    <a href="courses.html" class="text-slate-400 hover:text-white transition-colors text-sm">Courses</a>
+                    <a href="testimonials.html" class="text-slate-400 hover:text-white transition-colors text-sm">Testimonials</a>
+                    <a href="contact.html" class="text-slate-400 hover:text-white transition-colors text-sm">Contact Us</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Social Connect</h4>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors" aria-label="Facebook">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors" aria-label="Instagram">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+            &copy; 2026 Fluent & Fearless Spoken English. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/919229328115" target="_blank" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.35)] hover:scale-110 transition-transform active:scale-95" aria-label="Chat on WhatsApp">
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.81 5.81 0 0 0-.571-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.98 1.003-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.001 5.45-4.437 9.885-9.887 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Sticky Enroll Button -->
+<a href="contact.html" class="fixed right-[-24px] top-1/2 -translate-y-1/2 -rotate-90 origin-bottom-right bg-primary text-white font-display text-xs sm:text-sm font-bold py-2.5 px-6 rounded-t-2xl shadow-lg hover:bg-slate-800 hover:text-white transition-all z-40 whitespace-nowrap hidden md:block">
+    Enroll Now
+</a>
+
+<script src="cms.js"></script>
+</body>
+</html>

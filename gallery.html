@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Event Gallery | Fluent & Fearless Spoken English</title>
+    <meta name="description" content="View Fluent & Fearless event photos, videos, and student activity moments from Ranchi." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        'secondary-blue': '#004B87',
+                        'ev-black': '#0F172A',
+                        'on-surface': '#0F172A',
+                        'on-surface-variant': '#475569',
+                        'surface': '#F8FAFC',
+                        'outline-variant': '#E2E8F0',
+                        'primary-fixed': '#FFE8E0',
+                    },
+                    fontFamily: {
+                        sans: ['Merriweather', 'serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .gallery-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14); }
+        .gallery-card img { transition: transform 0.45s ease; }
+        .gallery-card:hover img { transform: scale(1.06); }
+        .filter-btn.active { background: #FF6B35; color: #fff; border-color: #FF6B35; }
+    </style>
+</head>
+<body class="font-sans text-ev-black bg-white antialiased">
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
+    <input type="checkbox" id="mobile-menu-toggle" />
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="font-display font-black text-2xl tracking-tight text-secondary-blue">Fluent <span class="text-primary">&</span> Fearless</span>
+            </a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Home</a>
+                <a href="about.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">About Us</a>
+                <a href="courses.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Courses</a>
+                <a href="testimonials.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Testimonials</a>
+                <a href="gallery.html" class="font-display text-sm font-semibold text-primary border-b-2 border-primary pb-0.5">Gallery</a>
+                <a href="contact.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Contact Us</a>
+                <a href="dashboard.html" class="font-display text-sm font-semibold bg-secondary-blue/10 text-secondary-blue px-3.5 py-1.5 rounded-full hover:bg-secondary-blue hover:text-white transition-all">Student Portal</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="online-practice.html" class="hidden sm:inline-flex bg-gradient-to-r from-primary to-[#FF8C61] text-white font-display text-sm font-bold px-7 py-3 rounded-full shadow-md hover:shadow-lg transition-all">Start Speaking Online</a>
+                <button type="button" onclick="document.getElementById('mobile-menu-toggle').checked = !document.getElementById('mobile-menu-toggle').checked" class="lg:hidden flex items-center justify-center w-11 h-11 text-on-surface cursor-pointer rounded-full hover:bg-slate-100 transition-colors" aria-label="Toggle Menu">
+                    <svg class="w-6 h-6 hamburger-open" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg class="w-6 h-6 hamburger-close" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu lg:hidden py-4 border-t border-outline-variant bg-white">
+            <div class="flex flex-col gap-2">
+                <a href="index.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Home</a>
+                <a href="about.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">About Us</a>
+                <a href="courses.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Courses</a>
+                <a href="testimonials.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Testimonials</a>
+                <a href="gallery.html" class="block px-4 py-3 font-display text-base font-semibold text-primary rounded-xl">Gallery</a>
+                <a href="contact.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Contact Us</a>
+                <a href="dashboard.html" class="block px-4 py-3 font-display text-base font-semibold text-secondary-blue hover:bg-slate-50 rounded-xl">Student Portal</a>
+                <a href="online-practice.html" class="block text-center mt-3 bg-gradient-to-r from-primary to-[#FF8C61] text-white font-display font-bold py-3.5 rounded-full">Start Speaking Online</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="relative bg-cover bg-center text-white py-20 sm:py-28 px-4" style="background-image: linear-gradient(135deg, rgba(0, 31, 69, 0.88), rgba(0, 75, 135, 0.72)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=80');">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl">
+                <span class="font-display text-sm font-bold text-primary uppercase tracking-widest">Gallery</span>
+                <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold mt-4 leading-tight">Photos, Videos & Event Moments</h1>
+                <p class="text-slate-200 text-base sm:text-lg mt-6 max-w-2xl">Explore classroom activities, speaking practice, trainer feedback sessions, achievement moments, and event highlights from Fluent & Fearless.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-surface py-16 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
+                <div>
+                    <span class="font-display text-sm font-bold text-primary uppercase tracking-wider">Browse Media</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-secondary-blue mt-2">Select A Category</h2>
+                </div>
+                <div class="flex flex-wrap gap-3" id="galleryFilters">
+                    <button type="button" data-filter="all" class="filter-btn active border-2 border-slate-200 bg-white text-secondary-blue font-display text-sm font-bold px-5 py-2.5 rounded-full transition-all">All</button>
+                    <button type="button" data-filter="photo" class="filter-btn border-2 border-slate-200 bg-white text-secondary-blue font-display text-sm font-bold px-5 py-2.5 rounded-full transition-all">Images</button>
+                    <button type="button" data-filter="video" class="filter-btn border-2 border-slate-200 bg-white text-secondary-blue font-display text-sm font-bold px-5 py-2.5 rounded-full transition-all">Videos</button>
+                    <button type="button" data-filter="event" class="filter-btn border-2 border-slate-200 bg-white text-secondary-blue font-display text-sm font-bold px-5 py-2.5 rounded-full transition-all">Events</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                <button type="button" data-type="event" onclick="openGalleryModal('event', 'Public Speaking Practice Day', 'Students presenting live topics and building stage confidence.', 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1100&q=80')" class="gallery-card bg-slate-950 rounded-3xl overflow-hidden relative min-h-[360px] text-left cursor-pointer sm:col-span-2 lg:col-span-2">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1100&q=80" alt="Public speaking event" class="absolute inset-0 w-full h-full object-cover opacity-90" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent"></div>
+                    <div class="absolute left-6 right-6 bottom-6 text-white">
+                        <span class="bg-primary text-white text-xs font-display font-bold px-3 py-1 rounded-full">Event</span>
+                        <h3 class="font-display text-2xl sm:text-3xl font-extrabold mt-4">Public Speaking Practice Day</h3>
+                        <p class="text-slate-200 text-sm mt-2">Live speaking practice and confidence building.</p>
+                    </div>
+                </button>
+
+                <button type="button" data-type="photo" onclick="openGalleryModal('photo', 'Group Discussion', 'Interactive speaking circle from our student event.', 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80')" class="gallery-card bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm text-left cursor-pointer">
+                    <div class="aspect-[4/3] overflow-hidden"><img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=700&q=80" alt="Group discussion" class="w-full h-full object-cover" /></div>
+                    <div class="p-5"><span class="text-xs font-display font-bold text-primary">Image</span><p class="font-display font-bold text-secondary-blue mt-1">Group Discussion</p><p class="text-xs text-on-surface-variant mt-1">Interactive speaking circle</p></div>
+                </button>
+
+                <button type="button" data-type="photo" onclick="openGalleryModal('photo', 'Trainer Feedback', 'One-to-one improvement notes and mentoring session.', 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80')" class="gallery-card bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm text-left cursor-pointer">
+                    <div class="aspect-[4/3] overflow-hidden"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=700&q=80" alt="Trainer feedback" class="w-full h-full object-cover" /></div>
+                    <div class="p-5"><span class="text-xs font-display font-bold text-primary">Image</span><p class="font-display font-bold text-secondary-blue mt-1">Trainer Feedback</p><p class="text-xs text-on-surface-variant mt-1">Personal speaking correction</p></div>
+                </button>
+
+                <button type="button" data-type="video" onclick="openGalleryModal('video', 'Classroom Activity Video', 'Dummy video preview for classroom practice activities.', 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80')" class="gallery-card bg-slate-950 rounded-3xl overflow-hidden relative shadow-sm text-left cursor-pointer">
+                    <div class="aspect-[4/3] overflow-hidden"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt="Classroom video" class="w-full h-full object-cover opacity-80" /></div>
+                    <div class="absolute inset-0 flex items-center justify-center"><span class="w-14 h-14 rounded-full bg-white text-primary flex items-center justify-center shadow-xl"><svg class="w-6 h-6 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span></div>
+                    <div class="absolute left-4 right-4 bottom-4 text-white"><p class="font-display font-bold text-sm">Classroom Activity Video</p><p class="text-xs text-slate-300">Video preview</p></div>
+                </button>
+
+                <button type="button" data-type="video" onclick="openGalleryModal('video', 'Student Achievement Video', 'Dummy video preview for student achievement moments.', 'https://images.unsplash.com/photo-1544531585-9847b68c8c86?auto=format&fit=crop&w=900&q=80')" class="gallery-card bg-slate-950 rounded-3xl overflow-hidden relative shadow-sm text-left cursor-pointer">
+                    <div class="aspect-[4/3] overflow-hidden"><img src="https://images.unsplash.com/photo-1544531585-9847b68c8c86?auto=format&fit=crop&w=700&q=80" alt="Achievement video" class="w-full h-full object-cover opacity-80" /></div>
+                    <div class="absolute inset-0 flex items-center justify-center"><span class="w-14 h-14 rounded-full bg-white text-primary flex items-center justify-center shadow-xl"><svg class="w-6 h-6 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span></div>
+                    <div class="absolute left-4 right-4 bottom-4 text-white"><p class="font-display font-bold text-sm">Student Achievement Video</p><p class="text-xs text-slate-300">Video preview</p></div>
+                </button>
+
+                <button type="button" data-type="event" onclick="openGalleryModal('event', 'Confidence Workshop', 'Students practicing introductions, interviews, and stage presence.', 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80')" class="gallery-card bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm text-left cursor-pointer">
+                    <div class="aspect-[4/3] overflow-hidden"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80" alt="Confidence workshop" class="w-full h-full object-cover" /></div>
+                    <div class="p-5"><span class="text-xs font-display font-bold text-emerald-700">Event</span><p class="font-display font-bold text-secondary-blue mt-1">Confidence Workshop</p><p class="text-xs text-on-surface-variant mt-1">Interview and stage presence</p></div>
+                </button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-secondary-blue text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div><h3 class="font-display font-extrabold text-xl text-white mb-4">Fluent & Fearless</h3><p class="text-slate-400 text-sm">Ranchi's premier academy for English Fluency, Oratory Arts, and Personality Grooming.</p></div>
+            <div><h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Quick Links</h4><div class="flex flex-col gap-2.5"><a href="index.html" class="text-slate-400 hover:text-white transition-colors text-sm">Home</a><a href="testimonials.html" class="text-slate-400 hover:text-white transition-colors text-sm">Testimonials</a><a href="contact.html" class="text-slate-400 hover:text-white transition-colors text-sm">Contact Us</a></div></div>
+            <div><h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Contact</h4><p class="text-slate-400 text-sm">Shukla Colony, Hinoo, Ranchi</p><p class="text-slate-400 text-sm mt-1">Near Fun Cinema, JH 834002</p><a href="tel:09229328115" class="text-primary font-bold text-sm mt-2 block">092293 28115</a></div>
+        </div>
+        <div class="mt-10 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">&copy; 2026 Fluent & Fearless Spoken English. All rights reserved.</div>
+    </div>
+</footer>
+
+<div id="galleryModal" class="fixed inset-0 z-[60] bg-slate-950/85 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative">
+        <button type="button" onclick="closeGalleryModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 text-slate-700 hover:bg-primary hover:text-white font-display font-bold shadow-lg">X</button>
+        <div class="relative bg-slate-950">
+            <img id="galleryModalImage" src="" alt="Gallery preview" class="w-full max-h-[68vh] object-cover" />
+            <div id="galleryVideoBadge" class="hidden absolute inset-0 items-center justify-center bg-black/20"><span class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center shadow-2xl"><svg class="w-9 h-9 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span></div>
+        </div>
+        <div class="p-6 sm:p-8">
+            <span id="galleryModalType" class="inline-flex bg-primary-fixed text-primary text-xs font-display font-bold px-3 py-1 rounded-full uppercase tracking-wider">Photo</span>
+            <h3 id="galleryModalTitle" class="font-display text-2xl sm:text-3xl font-extrabold text-secondary-blue mt-3"></h3>
+            <p id="galleryModalText" class="text-on-surface-variant text-sm sm:text-base mt-2"></p>
+        </div>
+    </div>
+</div>
+
+<a href="https://wa.me/919229328115" target="_blank" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.35)] hover:scale-110 transition-transform active:scale-95" aria-label="Chat on WhatsApp">
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.81 5.81 0 0 0-.571-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.98 1.003-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.001 5.45-4.437 9.885-9.887 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+function openGalleryModal(type, title, text, image) {
+    const modal = document.getElementById('galleryModal');
+    const imageEl = document.getElementById('galleryModalImage');
+    const typeEl = document.getElementById('galleryModalType');
+    const titleEl = document.getElementById('galleryModalTitle');
+    const textEl = document.getElementById('galleryModalText');
+    const videoBadge = document.getElementById('galleryVideoBadge');
+
+    imageEl.src = image;
+    typeEl.textContent = type === 'video' ? 'Video Preview' : type === 'event' ? 'Event Preview' : 'Photo Preview';
+    titleEl.textContent = title;
+    textEl.textContent = text;
+    videoBadge.classList.toggle('hidden', type !== 'video');
+    videoBadge.classList.toggle('flex', type === 'video');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeGalleryModal() {
+    const modal = document.getElementById('galleryModal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+}
+
+document.querySelectorAll('.filter-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        document.querySelectorAll('[data-type]').forEach(card => {
+            card.classList.toggle('hidden', filter !== 'all' && card.dataset.type !== filter);
+        });
+    });
+});
+
+document.getElementById('galleryModal').addEventListener('click', event => {
+    if (event.target.id === 'galleryModal') closeGalleryModal();
+});
+
+
+function createGalleryCard(item) {
+    const button = document.createElement('button');
+    const label = item.type === 'video' ? 'Video' : item.type === 'event' ? 'Event' : 'Image';
+    const dark = item.type === 'video';
+    button.type = 'button';
+    button.dataset.type = item.type;
+    button.className = 'gallery-card ' + (dark ? 'bg-slate-950 relative text-white' : 'bg-white') + ' rounded-3xl overflow-hidden border border-slate-100 shadow-sm text-left cursor-pointer';
+    button.addEventListener('click', () => openGalleryModal(item.type, item.title, item.text, item.image));
+    button.innerHTML = '<div class="aspect-[4/3] overflow-hidden"><img src="' + escapeGallery(item.image) + '" alt="' + escapeGallery(item.title) + '" class="w-full h-full object-cover ' + (dark ? 'opacity-80' : '') + '" /></div>' + (dark ? '<div class="absolute inset-0 flex items-center justify-center"><span class="w-14 h-14 rounded-full bg-white text-primary flex items-center justify-center shadow-xl"><svg class="w-6 h-6 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span></div><div class="absolute left-4 right-4 bottom-4"><p class="font-display font-bold text-sm">' + escapeGallery(item.title) + '</p><p class="text-xs text-slate-300">' + label + '</p></div>' : '<div class="p-5"><span class="text-xs font-display font-bold text-primary">' + label + '</span><p class="font-display font-bold text-secondary-blue mt-1">' + escapeGallery(item.title) + '</p><p class="text-xs text-on-surface-variant mt-1">' + escapeGallery(item.text) + '</p></div>');
+    return button;
+}
+
+function escapeGallery(value) {
+    return String(value || '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+}
+
+async function loadAdminGallery() {
+    try {
+        const res = await fetch('/api/gallery');
+        const data = await res.json();
+        const grid = document.getElementById('galleryGrid');
+        if (data.gallery && data.gallery.length) {
+            data.gallery.forEach(item => grid.prepend(createGalleryCard(item)));
+        }
+    } catch (error) {}
+}
+
+loadAdminGallery();
+</script>
+
+</body>
+</html>

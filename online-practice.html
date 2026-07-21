@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Online Speaking Practice | Fluent & Fearless</title>
+    <meta name="description" content="Subscribe to monthly speaking plans. Practice English online instantly 1-on-1 with experts." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        'secondary-blue': '#004B87',
+                        'ev-black': '#0F172A',
+                        'ev-white': '#FFFFFF',
+                        'on-surface': '#0F172A',
+                        'on-surface-variant': '#475569',
+                        'surface': '#F8FAFC',
+                        'outline-variant': '#E2E8F0',
+                        'primary-fixed': '#FFE8E0',
+                    },
+                    fontFamily: {
+                        sans: ['Merriweather', 'serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-sans text-ev-black bg-white antialiased">
+
+<!-- Header / Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
+    <input type="checkbox" id="mobile-menu-toggle" />
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="font-display font-black text-2xl tracking-tight text-secondary-blue">
+                    Fluent <span class="text-primary">&</span> Fearless
+                </span>
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Home</a>
+                <a href="about.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">About Us</a>
+                <a href="courses.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Courses</a>
+                <a href="testimonials.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Testimonials</a>
+                <a href="gallery.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Gallery</a>
+                <a href="contact.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Contact Us</a>
+                <a href="dashboard.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors bg-secondary-blue/10 text-secondary-blue px-3.5 py-1.5 rounded-full hover:bg-secondary-blue hover:text-white transition-all">Student Portal</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="online-practice.html" class="hidden sm:inline-flex bg-gradient-to-r from-primary to-[#FF8C61] hover:from-primary hover:to-primary text-white font-display text-sm font-bold px-7 py-3 rounded-full shadow-md hover:shadow-lg transition-all">
+                    Start Speaking Online
+                </a>
+                <button type="button" onclick="document.getElementById('mobile-menu-toggle').checked = !document.getElementById('mobile-menu-toggle').checked" class="lg:hidden flex items-center justify-center w-11 h-11 text-on-surface cursor-pointer rounded-full hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6 hamburger-open" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg class="w-6 h-6 hamburger-close" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu lg:hidden py-4 border-t border-outline-variant bg-white">
+            <div class="flex flex-col gap-2">
+                <a href="index.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Home</a>
+                <a href="about.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">About Us</a>
+                <a href="courses.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Courses</a>
+                <a href="testimonials.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Testimonials</a>
+                <a href="gallery.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl transition-all">Gallery</a>
+                <a href="contact.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Contact Us</a>
+                <a href="dashboard.html" class="block px-4 py-3 font-display text-base font-semibold text-secondary-blue hover:bg-slate-50 rounded-xl transition-all">Student Portal</a>
+                <a href="online-practice.html" class="block text-center mt-3 bg-gradient-to-r from-primary to-[#FF8C61] text-white font-display font-bold py-3.5 rounded-full">Start Speaking Online</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="py-16 sm:py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Intro -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="font-display text-sm font-bold text-primary uppercase tracking-wider">Online English Practice</span>
+            <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-secondary-blue mt-3 mb-6">
+                Practice English Anytime, Anywhere
+            </h1>
+            <p class="text-on-surface-variant text-lg">
+                Subscribe to a monthly plan, connect instantly to Zoom/WhatsApp calls, and build fluent communication.
+            </p>
+            
+            <!-- Instant Trial Trigger -->
+            <div class="mt-8 flex justify-center">
+                <button onclick="launchTrialSession()" class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-[#FF8C61] hover:from-primary hover:to-primary text-white font-display text-base font-bold px-10 py-4.5 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+                    📞 Start Free Trial Session (1 Session Free)
+                </button>
+            </div>
+        </div>
+
+        <!-- Plans Pricing Table -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Basic -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="font-display font-bold text-xl text-secondary-blue">Basic Plan</h3>
+                    <p class="text-xs text-on-surface-variant mt-1">Practice twice a week with native trainers</p>
+                    <div class="my-6">
+                        <span class="text-5xl font-extrabold text-secondary-blue">₹999</span>
+                        <span class="text-sm text-on-surface-variant">/ month</span>
+                    </div>
+                    <div class="border-t border-slate-100 pt-6 space-y-4 text-sm text-on-surface-variant">
+                        <div class="flex items-center gap-2">✓ 8 Sessions / Month</div>
+                        <div class="flex items-center gap-2">✓ Feedback from trainer</div>
+                        <div class="flex items-center gap-2">✓ Dashboard progress tracker</div>
+                    </div>
+                </div>
+                <div class="mt-8 space-y-4">
+                    <label class="flex items-center gap-2 text-xs text-on-surface-variant cursor-pointer">
+                        <input type="checkbox" checked class="accent-primary" /> Auto-renew monthly
+                    </label>
+                    <button onclick="triggerPayment('Basic Plan', 999)" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-display text-sm font-bold py-3.5 rounded-xl">
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Standard -->
+            <div class="bg-primary-fixed p-8 rounded-3xl border-2 border-primary relative flex flex-col justify-between shadow-md">
+                <span class="absolute top-0 right-8 -translate-y-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
+                <div>
+                    <h3 class="font-display font-bold text-xl text-secondary-blue">Standard Plan</h3>
+                    <p class="text-xs text-on-surface-variant mt-1">4 sessions per week (16 total)</p>
+                    <div class="my-6">
+                        <span class="text-5xl font-extrabold text-secondary-blue">₹1999</span>
+                        <span class="text-sm text-on-surface-variant">/ month</span>
+                    </div>
+                    <div class="border-t border-slate-200/50 pt-6 space-y-4 text-sm text-on-surface-variant">
+                        <div class="flex items-center gap-2 font-semibold">✓ 16 Sessions / Month</div>
+                        <div class="flex items-center gap-2">✓ Interview & Stage speech preparation</div>
+                        <div class="flex items-center gap-2">✓ Download recorded sessions</div>
+                    </div>
+                </div>
+                <div class="mt-8 space-y-4">
+                    <label class="flex items-center gap-2 text-xs text-on-surface-variant cursor-pointer">
+                        <input type="checkbox" checked class="accent-primary" /> Auto-renew monthly
+                    </label>
+                    <button onclick="triggerPayment('Standard Plan', 1999)" class="w-full bg-primary text-white font-display text-sm font-bold py-3.5 rounded-xl shadow-md">
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Premium -->
+            <div class="bg-white p-8 rounded-3xl border border-slate-200 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="font-display font-bold text-xl text-secondary-blue">Premium Plan</h3>
+                    <p class="text-xs text-on-surface-variant mt-1">Daily practice sessions (30 total)</p>
+                    <div class="my-6">
+                        <span class="text-5xl font-extrabold text-secondary-blue">₹3999</span>
+                        <span class="text-sm text-on-surface-variant">/ month</span>
+                    </div>
+                    <div class="border-t border-slate-100 pt-6 space-y-4 text-sm text-on-surface-variant">
+                        <div class="flex items-center gap-2">✓ Unlimited daily practice rooms</div>
+                        <div class="flex items-center gap-2">✓ 1-on-1 personal mentorship support</div>
+                        <div class="flex items-center gap-2">✓ Custom vocabulary & challenge sheets</div>
+                    </div>
+                </div>
+                <div class="mt-8 space-y-4">
+                    <label class="flex items-center gap-2 text-xs text-on-surface-variant cursor-pointer">
+                        <input type="checkbox" checked class="accent-primary" /> Auto-renew monthly
+                    </label>
+                    <button onclick="triggerPayment('Premium Plan', 3999)" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-display text-sm font-bold py-3.5 rounded-xl">
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- Payment status modal -->
+<div id="paymentModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-slate-100 text-center">
+        <button onclick="closePayment()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg font-bold">x</button>
+        <span class="text-xs font-bold text-[#002E6E] uppercase bg-slate-100 px-3 py-1 rounded-full">Secure Razorpay Payment</span>
+        <h3 id="paymentTitle" class="font-display font-bold text-xl text-secondary-blue mt-3">Plan Subscription</h3>
+        <p id="paymentAmount" class="text-2xl font-black text-primary mt-2">Rs 1999</p>
+        <div id="processingLoader" class="mt-6 text-center">
+            <div class="inline-block w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <p id="paymentStatus" class="text-sm text-on-surface-variant mt-3 font-semibold">Opening Razorpay checkout...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Zoom Call Classroom Simulator -->
+<div id="zoomModal" class="fixed inset-0 z-50 bg-slate-950 hidden flex-col justify-between p-6">
+    <!-- Header -->
+    <div class="flex items-center justify-between text-white border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-2">
+            <span class="w-3.5 h-3.5 bg-red-500 rounded-full animate-pulse"></span>
+            <span class="font-display font-bold text-sm tracking-wide">Fluent & Fearless Practice Room (Live Zoom)</span>
+        </div>
+        <button onclick="endZoomCall()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-lg">
+            End Call
+        </button>
+    </div>
+
+    <!-- Video Area -->
+    <div class="flex-1 flex items-center justify-center py-6">
+        <div class="relative w-full max-w-3xl aspect-video bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl flex items-center justify-center">
+            <!-- Simulated Trainer Feed -->
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Trainer Feed" class="w-full h-full object-cover opacity-90" />
+            
+            <!-- User Feed Overlay -->
+            <div class="absolute bottom-4 right-4 w-40 aspect-video bg-slate-950 rounded-xl overflow-hidden border-2 border-white/20">
+                <div class="w-full h-full flex items-center justify-center bg-slate-800 text-slate-400 text-xs">
+                    Camera On
+                </div>
+            </div>
+
+            <!-- Overlay text description -->
+            <div class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-lg">
+                Trainer: <span class="font-bold">Ananya Sharma (Senior Speaking Guide)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toolbar controls -->
+    <div class="flex items-center justify-center gap-6 text-slate-300 border-t border-slate-800 pt-4">
+        <button class="flex flex-col items-center gap-1 hover:text-white text-xs">
+            <span>🎤</span>
+            <span>Mute</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 hover:text-white text-xs">
+            <span>📹</span>
+            <span>Stop Video</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 hover:text-white text-xs">
+            <span>💬</span>
+            <span>Chat</span>
+        </button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-secondary-blue text-white py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold mb-4">Start your fearless English journey today!</h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-lg mx-auto">Get connected with top speaking trainers in Ranchi. Transform your life in 3 months.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-slate-800 text-center md:text-left">
+            <div>
+                <h3 class="font-display font-extrabold text-xl text-white mb-4">Fluent & Fearless</h3>
+                <p class="text-slate-400 text-sm">Ranchi's premier academy for English Fluency, Oratory Arts, and Professional Personality Grooming.</p>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                <div class="flex flex-col gap-2.5">
+                    <a href="index.html" class="text-slate-400 hover:text-white transition-colors text-sm">Home</a>
+                    <a href="about.html" class="text-slate-400 hover:text-white transition-colors text-sm">About Us</a>
+                    <a href="courses.html" class="text-slate-400 hover:text-white transition-colors text-sm">Courses</a>
+                    <a href="testimonials.html" class="text-slate-400 hover:text-white transition-colors text-sm">Testimonials</a>
+                    <a href="contact.html" class="text-slate-400 hover:text-white transition-colors text-sm">Contact Us</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Social Connect</h4>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors" aria-label="Facebook">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors" aria-label="Instagram">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+            &copy; 2026 Fluent & Fearless Spoken English. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/919229328115" target="_blank" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.35)] hover:scale-110 transition-transform active:scale-95">
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.81 5.81 0 0 0-.571-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.98 1.003-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.001 5.45-4.437 9.885-9.887 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Sticky Enroll Button -->
+<a href="contact.html" class="fixed right-[-24px] top-1/2 -translate-y-1/2 -rotate-90 origin-bottom-right bg-primary text-white font-display text-xs sm:text-sm font-bold py-2.5 px-6 rounded-t-2xl shadow-lg hover:bg-slate-800 hover:text-white transition-all z-40 whitespace-nowrap hidden md:block">
+    Enroll Now
+</a>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    const trialWhatsAppNumber = '919229328115';
+
+    function getTrialLink(email) {
+        const message = 'Hello Fluent & Fearless, I want to start my one free online trial video call. My email is ' + email;
+        return 'https://wa.me/' + trialWhatsAppNumber + '?text=' + encodeURIComponent(message);
+    }
+
+    function launchTrialSession() {
+        const email = prompt('Free trial ke liye apna email enter karein:');
+
+        if (!email) {
+            return;
+        }
+
+        const normalizedEmail = email.trim().toLowerCase();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(normalizedEmail)) {
+            alert('Please valid email enter karein.');
+            return;
+        }
+
+        const trialKey = 'fluent_fearless_trial_used_' + normalizedEmail;
+
+        if (localStorage.getItem(trialKey)) {
+            alert('Is email par free trial already use ho chuka hai. Continue karne ke liye subscription plan choose karein.');
+            return;
+        }
+
+        localStorage.setItem(trialKey, new Date().toISOString());
+        window.location.href = getTrialLink(normalizedEmail);
+    }
+
+    function endZoomCall() {
+        alert('Trial session WhatsApp par connect hota hai.');
+    }
+
+    let selectedPlan = "";
+    let selectedPrice = 0;
+
+    function showPaymentStatus(message) {
+        document.getElementById('paymentStatus').innerText = message;
+        document.getElementById('paymentModal').classList.remove('hidden');
+        document.getElementById('paymentModal').classList.add('flex');
+    }
+
+    function closePayment() {
+        document.getElementById('paymentModal').classList.remove('flex');
+        document.getElementById('paymentModal').classList.add('hidden');
+    }
+
+    async function triggerPayment(plan, price) {
+        selectedPlan = plan;
+        selectedPrice = price;
+
+        const identifier = prompt('Payment ke liye student email ya phone number enter karein:');
+        if (!identifier) return;
+
+        if (!window.Razorpay) {
+            alert('Razorpay load nahi ho paaya. Internet connection check karein.');
+            return;
+        }
+
+        document.getElementById('paymentTitle').innerText = plan + ' Subscription';
+        document.getElementById('paymentAmount').innerText = 'Rs ' + price;
+        showPaymentStatus('Creating secure Razorpay order...');
+
+        try {
+            const orderRes = await fetch('/api/razorpay/order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ identifier, plan, amount: price })
+            });
+            const orderData = await orderRes.json();
+            if (!orderRes.ok) throw new Error(orderData.error || 'Order create nahi ho paaya.');
+
+            showPaymentStatus('Opening Razorpay checkout...');
+
+            const checkout = new Razorpay({
+                key: orderData.key,
+                amount: orderData.order.amount,
+                currency: orderData.order.currency,
+                name: orderData.company || 'Fluent & Fearless',
+                description: plan + ' Monthly Subscription',
+                order_id: orderData.order.id,
+                prefill: {
+                    email: identifier.includes('@') ? identifier : '',
+                    contact: identifier.includes('@') ? '' : identifier
+                },
+                notes: { plan, identifier },
+                theme: { color: '#FF6B35' },
+                handler: async function(response) {
+                    showPaymentStatus('Payment verify ho raha hai...');
+                    const verifyRes = await fetch('/api/razorpay/verify', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            identifier,
+                            plan,
+                            amount: price,
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature
+                        })
+                    });
+                    const verifyData = await verifyRes.json();
+                    if (!verifyRes.ok) throw new Error(verifyData.error || 'Payment verify nahi ho paaya.');
+                    closePayment();
+                    alert('Payment successful! Student Portal ke liye aapka email/phone allow ho gaya hai. Ab password create karein.');
+                    window.location.href = 'dashboard.html';
+                },
+                modal: {
+                    ondismiss: function() {
+                        closePayment();
+                    }
+                }
+            });
+
+            checkout.on('payment.failed', function(response) {
+                closePayment();
+                alert(response.error?.description || 'Payment failed. Please try again.');
+            });
+
+            checkout.open();
+        } catch (error) {
+            closePayment();
+            alert(error.message || 'Payment start nahi ho paaya.');
+        }
+    }
+
+    // Automatically trigger trial modal if URL query has ?trial=true
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('trial') === 'true') {
+            launchTrialSession();
+        }
+    }
+</script>
+
+</body>
+</html>

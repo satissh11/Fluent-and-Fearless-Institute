@@ -1,0 +1,371 @@
+{
+  "subscriptions": [],
+  "students": [
+    {
+      "identifier": "test1782810181475@student.com",
+      "name": "Test Student",
+      "password": {
+        "salt": "95f25e45fd44f96283d626a5af5ffe54",
+        "hash": "939d9bddff8ab5667ffd1a3eb5c83f2bf83ff234e8997cd98e716f04ac206b29"
+      },
+      "plan": "Standard Plan",
+      "createdAt": "2026-06-30T09:03:01.635Z"
+    },
+    {
+      "identifier": "satish1612003@gmail.com",
+      "name": "satish kumar",
+      "password": {
+        "salt": "bc089634fe47e8dd50fb71410c01099d",
+        "hash": "41dd494449cd2e7c08ff6534045386c6f2e599053c808fd682ed891ef30d91fc"
+      },
+      "plan": "Standard Plan",
+      "createdAt": "2026-07-05T01:13:45.792Z"
+    }
+  ],
+  "reviews": [],
+  "gallery": [
+    {
+      "id": "media_mr0n5rsp_e49d68",
+      "type": "photo",
+      "title": "hello",
+      "text": "dfdskfdsfj",
+      "image": "/uploads/gallery-mr0n5rsq-40460a.png",
+      "status": "published",
+      "createdAt": "2026-06-30T12:47:13.660Z"
+    }
+  ],
+  "pages": {},
+  "pageImages": {
+    "home.hero": {
+      "url": "hero_students.png",
+      "hidden": false,
+      "updatedAt": "2026-06-30T12:36:47.069Z"
+    },
+    "home.trial": {
+      "url": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+      "hidden": false,
+      "updatedAt": "2026-06-30T12:45:35.694Z"
+    }
+  },
+  "visitors": [
+    {
+      "id": "visit_mrf0kstd_bba36d",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8655",
+      "page": "/index.html",
+      "referrer": "",
+      "visitedAt": "2026-07-10T14:11:36.289Z"
+    },
+    {
+      "id": "visit_mrf0u1pg_72bbce",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8655",
+      "page": "/about.html",
+      "referrer": "",
+      "visitedAt": "2026-07-10T14:18:47.717Z"
+    },
+    {
+      "id": "visit_mrf0zioh_f5d7eb",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/contact.html",
+      "referrer": "http://localhost:5181/testimonials.html",
+      "visitedAt": "2026-07-10T14:23:02.994Z"
+    },
+    {
+      "id": "visit_mrf1022d_fd0448",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/contact.html",
+      "visitedAt": "2026-07-10T14:23:28.117Z"
+    },
+    {
+      "id": "visit_mrf12v88_ddf719",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/contact.html",
+      "visitedAt": "2026-07-10T14:25:39.225Z"
+    },
+    {
+      "id": "visit_mrf14lnu_9f7472",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/testimonials.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-10T14:27:00.138Z"
+    },
+    {
+      "id": "visit_mrf16hd8_b3b013",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/online-practice.html",
+      "referrer": "http://localhost:5181/testimonials.html",
+      "visitedAt": "2026-07-10T14:28:27.884Z"
+    },
+    {
+      "id": "visit_mrf16n22_887f89",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/testimonials.html",
+      "referrer": "http://localhost:5181/online-practice.html",
+      "visitedAt": "2026-07-10T14:28:35.258Z"
+    },
+    {
+      "id": "visit_mrf1adg1_4723ab",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/testimonials.html",
+      "visitedAt": "2026-07-10T14:31:29.426Z"
+    },
+    {
+      "id": "visit_mrf1af00_a3247a",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/testimonials.html",
+      "visitedAt": "2026-07-10T14:31:31.440Z"
+    },
+    {
+      "id": "visit_mrf1b2no_1ad743",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/online-practice.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-10T14:32:02.100Z"
+    },
+    {
+      "id": "visit_mrf1b4ls_400502",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/online-practice.html",
+      "referrer": "http://localhost:5181/online-practice.html",
+      "visitedAt": "2026-07-10T14:32:04.625Z"
+    },
+    {
+      "id": "visit_mrf1b61l_6086f2",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/online-practice.html",
+      "visitedAt": "2026-07-10T14:32:06.489Z"
+    },
+    {
+      "id": "visit_mrf1bbi5_5764eb",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/courses.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-10T14:32:13.565Z"
+    },
+    {
+      "id": "visit_mrf1be4q_d07d84",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/courses.html",
+      "visitedAt": "2026-07-10T14:32:16.970Z"
+    },
+    {
+      "id": "visit_mrf1f31b_120bc0",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/courses.html",
+      "visitedAt": "2026-07-10T14:35:09.215Z"
+    },
+    {
+      "id": "visit_mrf1fep3_26fcc0",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/about.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-10T14:35:24.327Z"
+    },
+    {
+      "id": "visit_mrf1ffr9_3ef5e6",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/about.html",
+      "visitedAt": "2026-07-10T14:35:25.701Z"
+    },
+    {
+      "id": "visit_mrf1foqm_134b35",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/about.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-10T14:35:37.343Z"
+    },
+    {
+      "id": "visit_mrf1fqnz_048947",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/courses.html",
+      "referrer": "http://localhost:5181/about.html",
+      "visitedAt": "2026-07-10T14:35:39.839Z"
+    },
+    {
+      "id": "visit_mrf1frf7_450439",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/testimonials.html",
+      "referrer": "http://localhost:5181/courses.html",
+      "visitedAt": "2026-07-10T14:35:40.819Z"
+    },
+    {
+      "id": "visit_mrf1g5c5_bfad64",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/gallery.html",
+      "referrer": "http://localhost:5181/testimonials.html",
+      "visitedAt": "2026-07-10T14:35:58.853Z"
+    },
+    {
+      "id": "visit_mrf1ga58_676a72",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/dashboard.html",
+      "referrer": "http://localhost:5181/gallery.html",
+      "visitedAt": "2026-07-10T14:36:05.084Z"
+    },
+    {
+      "id": "visit_mrf1gcun_f6ca28",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/admin.html",
+      "referrer": "http://localhost:5181/dashboard.html",
+      "visitedAt": "2026-07-10T14:36:08.591Z"
+    },
+    {
+      "id": "visit_mrf1jyd8_efb79c",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/dashboard.html",
+      "referrer": "http://localhost:5181/admin.html",
+      "visitedAt": "2026-07-10T14:38:56.444Z"
+    },
+    {
+      "id": "visit_mrfrt7kx_429e02",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "",
+      "visitedAt": "2026-07-11T02:53:58.312Z"
+    },
+    {
+      "id": "visit_mrfrtg5n_1ffe69",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/courses.html",
+      "referrer": "http://localhost:5181/",
+      "visitedAt": "2026-07-11T02:54:09.419Z"
+    },
+    {
+      "id": "visit_mrfrtktq_6ef23f",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/contact.html",
+      "referrer": "http://localhost:5181/courses.html",
+      "visitedAt": "2026-07-11T02:54:15.470Z"
+    },
+    {
+      "id": "visit_mrfrukmr_cb2883",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/gallery.html",
+      "referrer": "http://localhost:5181/contact.html",
+      "visitedAt": "2026-07-11T02:55:01.875Z"
+    },
+    {
+      "id": "visit_mrfrvqmi_080503",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/contact.html",
+      "referrer": "http://localhost:5181/gallery.html",
+      "visitedAt": "2026-07-11T02:55:56.298Z"
+    },
+    {
+      "id": "visit_mrfrvvgy_16b978",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/contact.html",
+      "visitedAt": "2026-07-11T02:56:02.578Z"
+    },
+    {
+      "id": "visit_mrfrvz95_b11a5e",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/courses.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-11T02:56:07.481Z"
+    },
+    {
+      "id": "visit_mrfrw1it_4ae8b4",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/courses.html",
+      "visitedAt": "2026-07-11T02:56:10.422Z"
+    },
+    {
+      "id": "visit_mrfrwgrr_fb3c22",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/about.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-11T02:56:30.183Z"
+    },
+    {
+      "id": "visit_mrfrwkce_3b45ff",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/courses.html",
+      "referrer": "http://localhost:5181/about.html",
+      "visitedAt": "2026-07-11T02:56:34.814Z"
+    },
+    {
+      "id": "visit_mrfrwnue_5445e5",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/testimonials.html",
+      "referrer": "http://localhost:5181/courses.html",
+      "visitedAt": "2026-07-11T02:56:39.350Z"
+    },
+    {
+      "id": "visit_mrfry47i_91b304",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/contact.html",
+      "referrer": "http://localhost:5181/testimonials.html",
+      "visitedAt": "2026-07-11T02:57:47.214Z"
+    },
+    {
+      "id": "visit_mrfrykt7_3980ea",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/index.html",
+      "referrer": "http://localhost:5181/contact.html",
+      "visitedAt": "2026-07-11T02:58:08.731Z"
+    },
+    {
+      "id": "visit_mrfrzeyy_d53b94",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/about.html",
+      "referrer": "http://localhost:5181/index.html",
+      "visitedAt": "2026-07-11T02:58:47.818Z"
+    }
+  ],
+  "reportState": {
+    "lastWeeklyVisitorReportAt": "2026-07-10T14:22:18.091Z",
+    "lastWeeklyVisitorReportFile": "visitor-report-2026-07-10.xls",
+    "lastWeeklyVisitorReportEmailed": false,
+    "lastWeeklyVisitorReportError": "",
+    "lastWeeklyVisitorReportWhatsAppLink": "https://wa.me/919229328115?text=Weekly%20visitor%20report%20for%20Fluent%20%26%20Fearless%20is%20ready.%20Total%20visits%3A%202.%20Download%3A%20http%3A%2F%2Flocalhost%3A5181%2Freports%2Fvisitor-report-2026-07-10.xls"
+  }
+}

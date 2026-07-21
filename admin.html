@@ -1,0 +1,369 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Panel | Fluent & Fearless</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#FF6B35', 'secondary-blue': '#004B87', surface: '#F8FAFC' }, fontFamily: { display: ['Outfit', 'sans-serif'] } } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-surface text-slate-900 font-display min-h-screen">
+    <main class="max-w-7xl mx-auto px-4 py-10">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            <div>
+                <a href="index.html" class="font-black text-2xl text-secondary-blue">Fluent <span class="text-primary">&</span> Fearless</a>
+                <h1 class="text-3xl font-extrabold text-secondary-blue mt-3">Admin Panel</h1>
+                <p class="text-slate-500 text-sm mt-1">Subscriptions, reviews, page photos, gallery media aur page content manage karein.</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <a href="dashboard.html" class="bg-secondary-blue text-white font-bold px-5 py-3 rounded-xl">Student Portal</a>
+                <a href="gallery.html" class="bg-white border border-slate-200 text-secondary-blue font-bold px-5 py-3 rounded-xl">Gallery</a>
+                <button id="adminLogoutBtn" onclick="adminLogout()" class="hidden bg-white border border-red-200 text-red-600 font-bold px-5 py-3 rounded-xl">Logout</button>
+            </div>
+        </div>
+
+        <section id="adminLogin" class="bg-white rounded-2xl border border-slate-200 p-6 max-w-md shadow-sm">
+            <h2 class="text-xl font-bold text-secondary-blue mb-4">Admin Login</h2>
+            <input id="adminPassword" type="password" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Admin password" />
+            <button onclick="adminLogin()" class="w-full mt-4 bg-primary text-white font-bold py-3 rounded-xl">Login</button>
+            <p id="adminLoginError" class="hidden text-red-600 text-sm mt-3">Wrong password.</p>
+            <p class="text-xs text-slate-400 mt-4">Default password: admin123. Hosting ke time ADMIN_PASSWORD env var set karna.</p>
+        </section>
+
+        <section id="adminApp" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <h2 class="text-xl font-bold text-secondary-blue mb-4">Add Subscribed User</h2>
+                    <div class="space-y-4">
+                        <input id="studentIdentifier" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Email or phone number" />
+                        <select id="studentPlan" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary">
+                            <option>Basic Plan</option>
+                            <option selected>Standard Plan</option>
+                            <option>Premium Plan</option>
+                        </select>
+                        <button onclick="addSubscription()" class="w-full bg-primary text-white font-bold py-3 rounded-xl">Allow Student</button>
+                        <p id="adminMessage" class="text-sm text-slate-500"></p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <div class="flex items-center justify-between gap-4 mb-4">
+                        <h2 class="text-xl font-bold text-secondary-blue">Allowed Subscriptions</h2>
+                        <button onclick="loadAdminData()" class="border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold">Refresh</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="text-left text-slate-500 border-b"><tr><th class="py-3">Email / Phone</th><th>Plan</th><th>Source</th><th>Status</th><th>Student Account</th><th>Action</th></tr></thead>
+                            <tbody id="subscriptionRows"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-secondary-blue">Visitor Report</h2>
+                        <p class="text-sm text-slate-500 mt-1">Last 7 days ke website visits silently track ho rahe hain.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input id="visitorPageFilter" class="border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary" placeholder="Filter page" />
+                        <select id="visitorDaysFilter" class="border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary"><option value="7">Last 7 days</option><option value="3">Last 3 days</option><option value="1">Last 24 hours</option></select>
+                        <button onclick="loadVisitors()" class="border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold">Filter</button>
+                        <button onclick="sendVisitorReportNow()" class="bg-secondary-blue text-white px-4 py-2 rounded-xl text-sm font-bold">Send Report</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Total Visits</p><p id="visitorTotal" class="text-2xl font-black text-secondary-blue">0</p></div>
+                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Last Report</p><p id="visitorLastReport" class="text-sm font-bold text-secondary-blue">Not generated</p></div>
+                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Email Status</p><p id="visitorEmailStatus" class="text-sm font-bold text-secondary-blue">Not configured</p></div>
+                </div>
+                <div class="overflow-x-auto max-h-[420px] overflow-y-auto">
+                    <table class="w-full text-sm">
+                        <thead class="text-left text-slate-500 border-b sticky top-0 bg-white"><tr><th class="py-3">Date & Time</th><th>Page</th><th>IP Address</th><th>Browser Info</th></tr></thead>
+                        <tbody id="visitorRows"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between gap-4 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-secondary-blue">Page Photos</h2>
+                        <p class="text-sm text-slate-500 mt-1">Home ke 2 photos, About ka 1 photo, aur Courses ke 4 photos replace/delete karein.</p>
+                    </div>
+                    <button onclick="loadPageImages()" class="border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold">Refresh</button>
+                </div>
+                <div id="pageImageRows" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+            </section>
+
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <h2 class="text-xl font-bold text-secondary-blue mb-4">Manage Reviews</h2>
+                    <p class="text-sm text-slate-500 mb-4">Testimonials reviews yahan sirf delete kar sakte hain. Naya review public testimonials form se aayega.</p>
+                    <div id="reviewRows" class="mt-5 space-y-3 max-h-[520px] overflow-y-auto"></div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <h2 class="text-xl font-bold text-secondary-blue mb-4">Manage Gallery</h2>
+                    <div class="space-y-3">
+                        <input id="mediaTitle" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Title" />
+                        <input id="mediaImage" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" />
+                        <textarea id="mediaText" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary min-h-24" placeholder="Description"></textarea>
+                        <select id="mediaType" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"><option value="photo">Image</option><option value="video">Video</option><option value="event">Event</option></select>
+                        <button onclick="addMedia()" class="w-full bg-primary text-white font-bold py-3 rounded-xl">Add Media</button>
+                    </div>
+                    <div id="mediaRows" class="mt-5 space-y-3 max-h-[520px] overflow-y-auto"></div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <h2 class="text-xl font-bold text-secondary-blue mb-4">Page Editor</h2>
+                    <div class="space-y-3">
+                        <select id="pageKey" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"><option value="home">Home</option><option value="testimonials">Testimonials</option><option value="gallery">Gallery</option><option value="courses">Courses</option><option value="about">About</option><option value="contact">Contact</option></select>
+                        <input id="pageTitle" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Hero/title text" />
+                        <textarea id="pageSubtitle" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary min-h-24" placeholder="Subtitle text"></textarea>
+                        <input id="pageImage" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" />
+                        <button onclick="savePageContent()" class="w-full bg-secondary-blue text-white font-bold py-3 rounded-xl">Save Page Content</button>
+                    </div>
+                    <p id="pageMessage" class="text-sm text-slate-500 mt-4"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<script>
+let adminToken = '';
+const pageImageSlots = [
+    { slot: 'home.hero', label: 'Home Photo 1', current: 'hero_students.png' },
+    { slot: 'home.trial', label: 'Home Photo 2', current: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80' },
+    { slot: 'about.main', label: 'About Us Photo', current: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80' },
+    { slot: 'courses.spoken', label: 'Course Photo 1', current: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80' },
+    { slot: 'courses.public', label: 'Course Photo 2', current: 'https://images.unsplash.com/photo-1475721028314-398032120db0?auto=format&fit=crop&w=400&q=80' },
+    { slot: 'courses.pronunciation', label: 'Course Photo 3', current: 'https://images.unsplash.com/photo-1528642474498-1af0c17fd8c3?auto=format&fit=crop&w=400&q=80' },
+    { slot: 'courses.personality', label: 'Course Photo 4', current: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80' }
+];
+
+async function api(path, options = {}) {
+    const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+    if (adminToken) headers.Authorization = 'Bearer ' + adminToken;
+    const res = await fetch(path, { ...options, headers });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    return data;
+}
+
+function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+}
+
+function slotInputId(slot) {
+    return 'slot-' + slot.replace(/\./g, '-');
+}
+
+function fileToDataUrl(file) {
+    return new Promise((resolve, reject) => {
+        if (!file) return reject(new Error('Image file select karein.'));
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('Image read nahi ho paayi.'));
+        reader.readAsDataURL(file);
+    });
+}
+
+async function adminLogin() {
+    try {
+        const password = document.getElementById('adminPassword').value;
+        const data = await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ password }) });
+        adminToken = data.token;
+        document.getElementById('adminPassword').value = '';
+        showAdmin();
+    } catch (error) {
+        document.getElementById('adminLoginError').classList.remove('hidden');
+    }
+}
+
+function showAdmin() {
+    document.getElementById('adminLogin').classList.add('hidden');
+    document.getElementById('adminApp').classList.remove('hidden');
+    document.getElementById('adminLogoutBtn').classList.remove('hidden');
+    loadAdminData();
+    loadContentData();
+    loadPageImages();
+    loadVisitors();
+}
+
+function adminLogout() {
+    adminToken = '';
+    localStorage.removeItem('ff_admin_token');
+    document.getElementById('adminApp').classList.add('hidden');
+    document.getElementById('adminLogin').classList.remove('hidden');
+    document.getElementById('adminLogoutBtn').classList.add('hidden');
+}
+
+async function addSubscription() {
+    const identifier = document.getElementById('studentIdentifier').value;
+    const plan = document.getElementById('studentPlan').value;
+    const msg = document.getElementById('adminMessage');
+    try {
+        await api('/api/admin/subscriptions', { method: 'POST', body: JSON.stringify({ identifier, plan }) });
+        msg.textContent = 'Student allowed. Ab wo portal par password create kar sakta hai.';
+        document.getElementById('studentIdentifier').value = '';
+        loadAdminData();
+    } catch (error) {
+        msg.textContent = error.message;
+    }
+}
+
+async function removeSubscription(identifier) {
+    if (!confirm('Remove subscription for ' + identifier + '? Student login access band ho jayega.')) return;
+    const msg = document.getElementById('adminMessage');
+    try {
+        await api('/api/admin/subscriptions?identifier=' + encodeURIComponent(identifier), { method: 'DELETE' });
+        msg.textContent = 'Subscription removed: ' + identifier;
+        loadAdminData();
+    } catch (error) {
+        msg.textContent = error.message;
+    }
+}
+
+async function loadAdminData() {
+    const rows = document.getElementById('subscriptionRows');
+    try {
+        const data = await api('/api/admin/subscriptions');
+        rows.innerHTML = data.subscriptions.map(item => {
+            const hasAccount = data.students.some(student => student.identifier === item.identifier);
+            return '<tr class="border-b border-slate-100"><td class="py-3 font-bold text-secondary-blue">' + escapeHtml(item.identifier) + '</td><td>' + escapeHtml(item.plan) + '</td><td>' + escapeHtml(item.source) + '</td><td><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs font-bold">' + escapeHtml(item.status) + '</span></td><td>' + (hasAccount ? 'Created' : 'Not created') + '</td><td><button data-identifier="' + escapeHtml(item.identifier) + '" class="remove-subscription text-red-600 text-xs font-bold">Remove</button></td></tr>';
+        }).join('') || '<tr><td class="py-6 text-slate-400" colspan="6">No subscriptions yet.</td></tr>';
+        rows.querySelectorAll('.remove-subscription').forEach(button => button.addEventListener('click', () => removeSubscription(button.dataset.identifier)));
+    } catch (error) {
+        rows.innerHTML = '<tr><td class="py-6 text-red-600" colspan="6">' + escapeHtml(error.message) + '</td></tr>'; 
+    }
+}
+
+async function loadContentData() {
+    try {
+        const data = await api('/api/admin/content');
+        renderAdminReviews(data.reviews || []);
+        renderAdminGallery(data.gallery || []);
+    } catch (error) {
+        console.warn(error.message);
+    }
+}
+
+async function loadPageImages() {
+    const rows = document.getElementById('pageImageRows');
+    try {
+        const data = await api('/api/admin/page-images', { method: 'GET' });
+        const saved = data.pageImages || {};
+        rows.innerHTML = pageImageSlots.map(item => {
+            const config = saved[item.slot] || {};
+            const src = config.url || item.current;
+            const hidden = !!config.hidden;
+            return '<div class="border border-slate-100 rounded-2xl p-4">' +
+                '<div class="aspect-video bg-slate-100 rounded-xl overflow-hidden mb-3">' + (hidden ? '<div class="h-full flex items-center justify-center text-slate-400 text-sm font-bold">Deleted</div>' : '<img src="' + escapeHtml(src) + '" class="w-full h-full object-cover" />') + '</div>' +
+                '<p class="font-bold text-secondary-blue">' + escapeHtml(item.label) + '</p>' +
+                '<p class="text-xs text-slate-400 mb-3">' + escapeHtml(item.slot) + '</p>' +
+                '<input id="' + slotInputId(item.slot) + '" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary" />' +
+                '<div class="flex gap-2 mt-3"><button data-slot="' + escapeHtml(item.slot) + '" class="replace-page-image flex-1 bg-primary text-white text-sm font-bold py-2 rounded-xl">Replace</button><button data-slot="' + escapeHtml(item.slot) + '" class="delete-page-image flex-1 border border-red-200 text-red-600 text-sm font-bold py-2 rounded-xl">Delete</button></div>' +
+                '</div>';
+        }).join('');
+        rows.querySelectorAll('.replace-page-image').forEach(button => button.addEventListener('click', () => replacePageImage(button.dataset.slot)));
+        rows.querySelectorAll('.delete-page-image').forEach(button => button.addEventListener('click', () => deletePageImage(button.dataset.slot)));
+    } catch (error) {
+        rows.innerHTML = '<p class="text-red-600 text-sm">' + escapeHtml(error.message) + '</p>';
+    }
+}
+
+async function replacePageImage(slot) {
+    const input = document.getElementById(slotInputId(slot));
+    const imageData = await fileToDataUrl(input.files[0]);
+    await api('/api/admin/page-images', { method: 'POST', body: JSON.stringify({ slot, imageData }) });
+    loadPageImages();
+}
+
+async function deletePageImage(slot) {
+    await api('/api/admin/page-images?slot=' + encodeURIComponent(slot), { method: 'DELETE' });
+    loadPageImages();
+}
+
+async function deleteReview(id) {
+    await api('/api/admin/reviews?id=' + encodeURIComponent(id), { method: 'DELETE' });
+    loadContentData();
+}
+
+function renderAdminReviews(reviews) {
+    const target = document.getElementById('reviewRows');
+    target.innerHTML = reviews.map(item => {
+        return '<div class="border border-slate-100 rounded-xl p-3"><div class="flex justify-between gap-3"><div><p class="font-bold text-secondary-blue">' + escapeHtml(item.name) + '</p><p class="text-xs text-slate-500">' + escapeHtml(item.rating || 5) + ' star' + (item.email ? ' | ' + escapeHtml(item.email) : '') + (item.verified ? ' | Verified' : '') + '</p></div><button data-review-id="' + escapeHtml(item.id) + '" class="delete-review text-red-600 text-xs font-bold">Delete</button></div><p class="text-sm text-slate-600 mt-2">' + escapeHtml(item.text) + '</p></div>';
+    }).join('') || '<p class="text-sm text-slate-400">No custom reviews yet.</p>';
+    target.querySelectorAll('.delete-review').forEach(button => button.addEventListener('click', () => deleteReview(button.dataset.reviewId)));
+}
+
+async function addMedia() {
+    const fileInput = document.getElementById('mediaImage');
+    const imageData = await fileToDataUrl(fileInput.files[0]);
+    await api('/api/admin/gallery', { method: 'POST', body: JSON.stringify({ title: document.getElementById('mediaTitle').value, imageData, text: document.getElementById('mediaText').value, type: document.getElementById('mediaType').value }) });
+    document.getElementById('mediaTitle').value = '';
+    fileInput.value = '';
+    document.getElementById('mediaText').value = '';
+    loadContentData();
+}
+
+async function deleteMedia(id) {
+    await api('/api/admin/gallery?id=' + encodeURIComponent(id), { method: 'DELETE' });
+    loadContentData();
+}
+
+function renderAdminGallery(items) {
+    const target = document.getElementById('mediaRows');
+    target.innerHTML = items.map(item => {
+        return '<div class="border border-slate-100 rounded-xl p-3 flex gap-3"><img src="' + escapeHtml(item.image) + '" class="w-16 h-16 object-cover rounded-lg bg-slate-100" /><div class="flex-1"><div class="flex justify-between gap-3"><p class="font-bold text-secondary-blue">' + escapeHtml(item.title) + '</p><button data-media-id="' + escapeHtml(item.id) + '" class="delete-media text-red-600 text-xs font-bold">Delete</button></div><p class="text-xs text-primary font-bold">' + escapeHtml(item.type) + '</p><p class="text-sm text-slate-600 mt-1">' + escapeHtml(item.text) + '</p></div></div>';
+    }).join('') || '<p class="text-sm text-slate-400">No gallery items yet.</p>';
+    target.querySelectorAll('.delete-media').forEach(button => button.addEventListener('click', () => deleteMedia(button.dataset.mediaId)));
+}
+
+async function loadVisitors() {
+    const rows = document.getElementById('visitorRows');
+    if (!rows) return;
+    try {
+        const days = document.getElementById('visitorDaysFilter').value;
+        const page = document.getElementById('visitorPageFilter').value;
+        const data = await api('/api/admin/visitors?days=' + encodeURIComponent(days) + '&page=' + encodeURIComponent(page));
+        document.getElementById('visitorTotal').textContent = data.total;
+        const last = data.lastReport || {};
+        document.getElementById('visitorLastReport').textContent = last.lastWeeklyVisitorReportFile || 'Not generated';
+        document.getElementById('visitorEmailStatus').innerHTML = (last.lastWeeklyVisitorReportEmailed ? 'Email sent' : (last.lastWeeklyVisitorReportError || 'Email not configured')) + (last.lastWeeklyVisitorReportWhatsAppLink ? ' · <a class="text-primary underline" target="_blank" href="' + escapeHtml(last.lastWeeklyVisitorReportWhatsAppLink) + '">WhatsApp</a>' : '');
+        rows.innerHTML = data.visitors.map(item => '<tr class="border-b border-slate-100"><td class="py-3 whitespace-nowrap">' + escapeHtml(new Date(item.visitedAt).toLocaleString()) + '</td><td class="font-bold text-secondary-blue">' + escapeHtml(item.page) + '</td><td>' + escapeHtml(item.ip) + '</td><td class="max-w-md truncate" title="' + escapeHtml(item.browser) + '">' + escapeHtml(item.browser) + '</td></tr>').join('') || '<tr><td class="py-6 text-slate-400" colspan="4">No visitor records found.</td></tr>';
+    } catch (error) {
+        rows.innerHTML = '<tr><td class="py-6 text-red-600" colspan="4">' + escapeHtml(error.message) + '</td></tr>';
+    }
+}
+
+async function sendVisitorReportNow() {
+    const status = document.getElementById('visitorEmailStatus');
+    try {
+        status.textContent = 'Generating...';
+        const data = await api('/api/admin/visitor-report/send-now', { method: 'POST', body: JSON.stringify({}) });
+        status.innerHTML = (data.report.emailed ? 'Email sent' : (data.report.emailError || 'Generated, email not configured')) + (data.report.whatsAppLink ? ' · <a class="text-primary underline" target="_blank" href="' + escapeHtml(data.report.whatsAppLink) + '">WhatsApp</a>' : '');
+        loadVisitors();
+    } catch (error) {
+        status.textContent = error.message;
+    }
+}
+
+async function savePageContent() {
+    const fileInput = document.getElementById('pageImage');
+    const payload = { page: document.getElementById('pageKey').value, title: document.getElementById('pageTitle').value, subtitle: document.getElementById('pageSubtitle').value };
+    if (fileInput.files[0]) payload.imageData = await fileToDataUrl(fileInput.files[0]);
+    await api('/api/admin/pages', { method: 'POST', body: JSON.stringify(payload) });
+    fileInput.value = '';
+    document.getElementById('pageMessage').textContent = 'Page content saved.';
+}
+</script>
+</body>
+</html>
+

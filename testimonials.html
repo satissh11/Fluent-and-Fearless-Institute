@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Testimonials | Fluent & Fearless Spoken English</title>
+    <meta name="description" content="Read genuine reviews from 60+ students in Ranchi who transformed their English speaking at Fluent & Fearless." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        'secondary-blue': '#004B87',
+                        'ev-black': '#0F172A',
+                        'on-surface': '#0F172A',
+                        'on-surface-variant': '#475569',
+                        'surface': '#F8FAFC',
+                        'outline-variant': '#E2E8F0',
+                        'primary-fixed': '#FFE8E0',
+                    },
+                    fontFamily: {
+                        sans: ['Merriweather', 'serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* Marquee scroll */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track { animation: marquee 45s linear infinite; }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        /* Card hover lift */
+        .review-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .review-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,75,135,0.12); }
+
+        /* Star color */
+        .stars { color: #F59E0B; }
+    </style>
+</head>
+<body class="font-sans text-ev-black bg-white antialiased">
+
+<!-- 
+     HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
+    <input type="checkbox" id="mobile-menu-toggle" />
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center gap-2 shrink-0">
+                <span class="font-display font-black text-2xl tracking-tight text-secondary-blue">
+                    Fluent <span class="text-primary">&</span> Fearless
+                </span>
+            </a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Home</a>
+                <a href="about.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">About Us</a>
+                <a href="courses.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Courses</a>
+                <a href="testimonials.html" class="font-display text-sm font-semibold text-primary border-b-2 border-primary pb-0.5">Testimonials</a>
+                <a href="gallery.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Gallery</a>
+                <a href="contact.html" class="font-display text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors">Contact Us</a>
+                <a href="dashboard.html" class="font-display text-sm font-semibold bg-secondary-blue/10 text-secondary-blue px-3.5 py-1.5 rounded-full hover:bg-secondary-blue hover:text-white transition-all">Student Portal</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button type="button" onclick="document.getElementById('mobile-menu-toggle').checked = !document.getElementById('mobile-menu-toggle').checked" class="lg:hidden flex items-center justify-center w-11 h-11 text-on-surface cursor-pointer rounded-full hover:bg-slate-100 transition-colors">
+                    <svg class="w-6 h-6 hamburger-open" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg class="w-6 h-6 hamburger-close" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu lg:hidden py-4 border-t border-outline-variant bg-white">
+            <div class="flex flex-col gap-2">
+                <a href="index.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Home</a>
+                <a href="about.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">About Us</a>
+                <a href="courses.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Courses</a>
+                <a href="testimonials.html" class="block px-4 py-3 font-display text-base font-semibold text-primary rounded-xl">Testimonials</a>
+                <a href="gallery.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Gallery</a>
+                <a href="contact.html" class="block px-4 py-3 font-display text-base font-semibold text-on-surface hover:bg-slate-50 hover:text-primary rounded-xl">Contact Us</a>
+                <a href="dashboard.html" class="block px-4 py-3 font-display text-base font-semibold text-secondary-blue hover:bg-slate-50 rounded-xl">Student Portal</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!--  HERO BANNER -->
+    <section class="relative text-white py-20 sm:py-28 text-center px-4 bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(135deg, rgba(0, 31, 69, 0.88), rgba(0, 75, 135, 0.76)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80');">
+        <span class="font-display text-sm font-bold text-primary uppercase tracking-widest">Real Students. Real Results.</span>
+        <h1 class="font-display text-4xl sm:text-5xl font-extrabold mt-4 mb-6 max-w-3xl mx-auto leading-tight">
+            What Our Students Say About Us
+        </h1>
+        <p class="text-slate-300 text-lg max-w-xl mx-auto">
+            Over 68 genuine reviews from students in Ranchi who transformed their English and their lives.
+        </p>
+
+        <!-- Rating Summary -->
+        <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8">
+            <div class="text-center">
+                <p class="text-7xl font-black font-display text-white leading-none">5.0</p>
+                <div class="stars text-2xl mt-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="text-slate-400 text-sm font-display mt-1">Google Rating</p>
+            </div>
+            <div class="hidden sm:block w-px h-20 bg-white/20"></div>
+            <div class="flex gap-8">
+                <div class="text-center">
+                    <p class="text-4xl font-black font-display text-primary">68+</p>
+                    <p class="text-slate-400 text-sm font-display mt-1">Reviews</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-black font-display text-primary">3 Mo</p>
+                    <p class="text-slate-400 text-sm font-display mt-1">Avg. Transformation</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-black font-display text-primary">100%</p>
+                    <p class="text-slate-400 text-sm font-display mt-1">5-Star Reviews</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  SCROLLING MARQUEE STRIP -->
+    <div class="bg-primary/5 border-y border-primary/10 py-5 overflow-hidden">
+        <div class="flex gap-6 marquee-track whitespace-nowrap select-none" style="width: max-content;">
+            <!-- Duplicate set for seamless looping -->
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Best spoken English in Ranchi!" - Akash Kumar</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "I got a job in an MNC. Earning Rs 60k/month!" - Tulsi Karmali</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Got promoted at my company!" - Ritesh Prajapati</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "I am now an orator!" - Vinay Kumar</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Humble, down-to-earth teacher." - Abhishek Sinha</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Turning point of my life!" - Chaudhari Karji</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Best spoken English in Ranchi!" - Akash Kumar</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "I got a job in an MNC. Earning Rs 60k/month!" - Tulsi Karmali</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Got promoted at my company!" - Ritesh Prajapati</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "I am now an orator!" - Vinay Kumar</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Humble, down-to-earth teacher." - Abhishek Sinha</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+            <span class="font-display text-sm font-bold text-secondary-blue px-2">&#11088; "Turning point of my life!" - Chaudhari Karji</span>
+            <span class="font-display text-sm font-bold text-primary px-2">&bull;</span>
+        </div>
+    </div>
+
+    <!--  FEATURED REVIEWS (Long cards, top row) -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center mb-14">
+                <span class="font-display text-sm font-bold text-primary uppercase tracking-wider">Featured Stories</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-secondary-blue mt-3">
+                    Life-Changing Transformations
+                </h2>
+            </div>
+
+            <!-- Featured cards grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+
+                <!-- Ritesh Prajapati -->
+                <div class="review-card bg-white rounded-3xl p-7 border border-slate-100 shadow-sm flex flex-col gap-4">
+                    <div class="stars text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">
+                        "I was not getting promotion in my company because of English. But after completing 3 month classes at Fluent and Fearless, now I am at a good position in my company and also very confident."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-secondary-blue text-white flex items-center justify-center font-bold font-display text-sm shrink-0">RP</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-secondary-blue">Ritesh Prajapati</p>
+                            <p class="text-xs text-on-surface-variant">Working Professional Â· 8 months ago</p>
+                        </div>
+                        <span class="ml-auto bg-emerald-100 text-emerald-700 text-xs font-display font-bold px-2.5 py-1 rounded-full">Promoted!</span>
+                    </div>
+                </div>
+
+                <!-- Tulsi Karmali -->
+                <div class="review-card bg-white rounded-3xl p-7 border border-slate-100 shadow-sm flex flex-col gap-4">
+                    <div class="stars text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">
+                        "When I joined, I didn't know even reading a book. But now I can speak fluently. I got a job in an MNC company and I am earning Rs 60k per month. Highly recommended!"
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold font-display text-sm shrink-0">TK</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-secondary-blue">Tulsi Karmali</p>
+                            <p class="text-xs text-on-surface-variant">MNC Employee Â· 1 year ago</p>
+                        </div>
+                        <span class="ml-auto bg-primary/10 text-primary text-xs font-display font-bold px-2.5 py-1 rounded-full">MNC Job &check;</span>
+                    </div>
+                </div>
+
+                <!-- Chaudhari Karji -->
+                <div class="review-card bg-white rounded-3xl p-7 border border-slate-100 shadow-sm flex flex-col gap-4">
+                    <div class="stars text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">
+                        "Thank you so much Bittu sir - only because of you, today I am a public speaker and I am doing my best in life. Joining this institute was a turning point in terms of everything."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-secondary-blue text-white flex items-center justify-center font-bold font-display text-sm shrink-0">CK</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-secondary-blue">Chaudhari Karji</p>
+                            <p class="text-xs text-on-surface-variant">Public Speaker Â· 1 year ago</p>
+                        </div>
+                        <span class="ml-auto bg-secondary-blue/10 text-secondary-blue text-xs font-display font-bold px-2.5 py-1 rounded-full">Public Speaker</span>
+                    </div>
+                </div>
+
+                <!-- Vinay Kumar -->
+                <div class="review-card bg-white rounded-3xl p-7 border border-slate-100 shadow-sm flex flex-col gap-4">
+                    <div class="stars text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">
+                        "I can't believe the way he teaches English. Amazing institute. I didn't know anything before joining, but now I am an orator . Thank you so much sir."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold font-display text-sm shrink-0">VK</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-secondary-blue">Vinay Kumar</p>
+                            <p class="text-xs text-on-surface-variant">Student Â· 4 months ago</p>
+                        </div>
+                        <span class="ml-auto bg-primary/10 text-primary text-xs font-display font-bold px-2.5 py-1 rounded-full">Orator &check;</span>
+                    </div>
+                </div>
+
+                <!-- Rani Kumari -->
+                <div class="review-card bg-white rounded-3xl p-7 border border-slate-100 shadow-sm flex flex-col gap-4">
+                    <div class="stars text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">
+                        "I am a teacher and I am 22 years old. When I joined, I didn't know anything in English. But now today I am teaching English. Even your online classes are very effective. Thank you so much sir."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold font-display text-sm shrink-0">RK</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-secondary-blue">Rani Kumari</p>
+                            <p class="text-xs text-on-surface-variant">Now an English Teacher Â· 3 months ago</p>
+                        </div>
+                        <span class="ml-auto bg-emerald-100 text-emerald-700 text-xs font-display font-bold px-2.5 py-1 rounded-full">Now Teaches English!</span>
+                    </div>
+                </div>
+
+                <!-- Muni Kumari -->
+                <div class="review-card bg-white rounded-3xl p-7 border border-slate-100 shadow-sm flex flex-col gap-4">
+                    <div class="stars text-base">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">
+                        "After getting married I lost my hope that I could learn English. But after joining Fluent and Fearless I got everything - the thing I was looking for."
+                    </p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-purple-400 text-white flex items-center justify-center font-bold font-display text-sm shrink-0">MK</div>
+                        <div>
+                            <p class="font-display font-bold text-sm text-secondary-blue">Muni Kumari</p>
+                            <p class="text-xs text-on-surface-variant">Homemaker Â· 1 year ago</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--  FULL REVIEWS GRID (All Reviews) -->
+            <div class="text-center mb-10 mt-16">
+                <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-secondary-blue">All Student Reviews</h2>
+                <p class="text-on-surface-variant text-sm mt-2 font-display">Every review below is from a real student at our Ranchi centre.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-sm mb-10 max-w-3xl mx-auto">
+                <h3 class="font-display text-xl font-extrabold text-secondary-blue mb-4">Write Your Review</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                    <input id="publicReviewName" class="border border-slate-200 rounded-xl px-4 py-3 font-display text-sm outline-none focus:border-primary" placeholder="Your name" />
+                    <input id="publicReviewEmail" type="email" class="border border-slate-200 rounded-xl px-4 py-3 font-display text-sm outline-none focus:border-primary" placeholder="Subscribed email" />
+                    <select id="publicReviewRating" class="border border-slate-200 rounded-xl px-4 py-3 font-display text-sm outline-none focus:border-primary"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <textarea id="publicReviewText" class="w-full border border-slate-200 rounded-xl px-4 py-3 font-display text-sm min-h-28 outline-none focus:border-primary" placeholder="Share your Fluent & Fearless experience"></textarea>
+                <button onclick="submitPublicReview()" class="mt-4 bg-primary text-white font-display font-bold px-8 py-3 rounded-full">Post Review</button>
+                <p id="publicReviewMessage" class="text-sm text-on-surface-variant mt-3 font-display"></p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="allReviews">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-10">
+                <button onclick="loadMore()" id="loadMoreBtn" class="border-2 border-secondary-blue text-secondary-blue font-display font-bold px-10 py-3.5 rounded-full hover:bg-secondary-blue hover:text-white transition-all">
+                    Load More Reviews
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-primary to-[#FF8C61] py-16 text-center px-4">
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white mb-4">Your Success Story Could Be Next</h2>
+        <p class="text-white/80 text-lg mb-8 max-w-lg mx-auto">Join Ranchi's most trusted spoken English institute.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="gallery.html" class="bg-secondary-blue text-white font-display font-bold px-10 py-4 rounded-full shadow-lg hover:bg-slate-900 transition-all">
+                View Event Gallery
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<!--  FOOTER -->
+<footer class="bg-secondary-blue text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                <h3 class="font-display font-extrabold text-xl text-white mb-4">Fluent & Fearless</h3>
+                <p class="text-slate-400 text-sm">Ranchi's premier academy for English Fluency, Oratory Arts, and Personality Grooming.</p>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Quick Links</h4>
+                <div class="flex flex-col gap-2.5">
+                    <a href="index.html" class="text-slate-400 hover:text-white transition-colors text-sm">Home</a>
+                    <a href="about.html" class="text-slate-400 hover:text-white transition-colors text-sm">About Us</a>
+                    <a href="courses.html" class="text-slate-400 hover:text-white transition-colors text-sm">Courses</a>
+                    <a href="testimonials.html" class="text-slate-400 hover:text-white transition-colors text-sm">Testimonials</a>
+                    <a href="contact.html" class="text-slate-400 hover:text-white transition-colors text-sm">Contact Us</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-display font-bold text-sm text-white uppercase tracking-wider mb-4">Contact</h4>
+                <p class="text-slate-400 text-sm">Shukla Colony, Hinoo, Ranchi</p>
+                <p class="text-slate-400 text-sm mt-1">Near Fun Cinema, JH 834002</p>
+                <a href="tel:09229328115" class="text-primary font-bold text-sm mt-2 block">092293 28115</a>
+            </div>
+        </div>
+        <div class="mt-10 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+            &copy; 2026 Fluent & Fearless Spoken English. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919229328115" target="_blank" class="fixed bottom-6 left-6 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.35)] hover:scale-110 transition-transform active:scale-95" aria-label="Chat on WhatsApp">
+    <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a5.81 5.81 0 0 0-.571-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.98 1.003-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.001 5.45-4.437 9.885-9.887 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Sticky Enroll Button -->
+<a href="contact.html" class="fixed right-[-24px] top-1/2 -translate-y-1/2 -rotate-90 origin-bottom-right bg-primary text-white font-display text-xs sm:text-sm font-bold py-2.5 px-6 rounded-t-2xl shadow-lg hover:bg-slate-800 transition-all z-40 whitespace-nowrap hidden md:block">
+    Enroll Now
+</a>
+
+<script>
+
+const baseReviews = [
+    { name: "Priti Kumari", ago: "8 months ago", text: "Just wow. No doubt amazing . Thank you so much sir for making me a good speaker. Easy and effective way of teaching. Teachers are so cooperative and concerned with students' progress.", initials: "PK", color: "bg-pink-500" },
+    { name: "Suman Shekhar", ago: "3 months ago", text: "I have had the pleasure of being a part of this institute. I have learned a lot and improved my spoken skills. It helped me gain confidence and knowledge that will be good for my career prospects.", initials: "SS", color: "bg-secondary-blue" },
+    { name: "Amit Singh", ago: "9 months ago", text: "I really enjoyed the English class. The lessons were well-structured, and the teacher used examples from daily life which made learning easier. Activities like group discussions made it interactive.", initials: "AS", color: "bg-primary" },
+    { name: "ANKIT BHARDWAJ", ago: "1 year ago", text: "I visited many spoken English classes but no one was good. But finally I came to know about Bittu sir and I joined. Now I am enjoying my spoken English journey.", initials: "AB", color: "bg-indigo-500" },
+    { name: "Akash Kumar", ago: "9 months ago", text: "Great coaching for spoken English. Teachers are very supportive, classes are practical, and it really helps in building confidence. Highly recommended!", initials: "AK", color: "bg-teal-500" },
+    { name: "Amit Kumar", ago: "8 months ago", text: "Thank you so much - your classes are really very interesting and effective. I am an online student and after completing your online classes I came to know that English is really very easy.", initials: "AK", color: "bg-orange-500" },
+    { name: "Vishal Kumar", ago: "1 year ago", text: "Anybody can join without hesitation. I promise it is worth it. Really I love the method of teaching. One of the simplest and very effective ways. Thank you so much sir for making me a good English speaker.", initials: "VK", color: "bg-cyan-600" },
+    { name: "Vishal kumar", ago: "1 year ago", text: "The teachers were incredibly patient and focused on my individual needs, providing personalized feedback and creating a comfortable environment to practice speaking. I felt a significant improvement in my fluency and pronunciation.", initials: "VK", color: "bg-secondary-blue" },
+    { name: "Rangnat Kumar", ago: "1 year ago", text: "No doubt, one of the best classes for learning English communication. I really enjoyed a lot. Best for public speaking Public speaking. I promise you will never regret. Thank you!", initials: "RK", color: "bg-primary" },
+    { name: "Jano Bakhla", ago: "9 months ago", text: "I am a Hindi medium student. I never thought I would speak English. But after joining this institute I can speak, and now I am a good speaker. Thank you Bittu sir - your teaching is really very amazing.", initials: "JB", color: "bg-green-600" },
+    { name: "AKSHAY KUMAR", ago: "1 year ago", text: "Superb classes. Amazing environment of public speaking. Please join without hesitation - I promise you will enjoy this journey. Thank you so much Bittu sir .", initials: "AK", color: "bg-blue-600" },
+    { name: "Anusakha Kumari", ago: "9 months ago", text: "One of the best English speaking classes in Ranchi. Teacher does one-to-one practice and my English was very poor when I joined. Now my English is very fluent.", initials: "AN", color: "bg-rose-500" },
+    { name: "Nandlal Kumar", ago: "1 year ago", text: "Thank you so much Bittu sir. Because of you, today I am a good speaker and now I am working in a reputed company. Your teaching style is amazing.", initials: "NK", color: "bg-violet-500" },
+    { name: "Jyoti Kumari", ago: "1 year ago", text: "Wow, his teaching style is amazing and the way he teaches is incredible. I didn't know about public speaking Public speaking. But here I came to know about public speaking and now I am a great orator. Thank you so much .", initials: "JK", color: "bg-pink-600" },
+    { name: "Jaydeep Singh", ago: "1 year ago", text: "One of the best spoken classes in Ranchi - Fluent & Fearless - which gives the best knowledge to students. Those who are interested to improve their English please join this institute.", initials: "JS", color: "bg-secondary-blue" },
+    { name: "Surendra Kumar Prajapati", ago: "1 year ago", text: "No doubt, superb classes! First in Ranchi - any coaching providing proper public speaking classes Public speaking. Amazing .", initials: "SP", color: "bg-primary" },
+    { name: "Priya Kumari", ago: "1 year ago", text: "One of the best English spoken teachers in Ranchi. Fluent and Fearless Institute English classes are awesome and motivating to learn English.", initials: "PK", color: "bg-fuchsia-500" },
+    { name: "SHUBHAM KUMAR", ago: "1 year ago", text: "The spoken English classes were incredibly beneficial, providing a supportive environment to practice speaking fluently and confidently. Experienced instructors actively corrected pronunciation and grammar, significantly improving my communication skills.", initials: "SK", color: "bg-sky-600" },
+    { name: "Manu Pandey", ago: "1 year ago", text: "If you really want to speak English fluently and fearlessly then you can join the session of Bittu sir. I am studying here and I am in the process of improving myself.", initials: "MP", color: "bg-amber-600" },
+    { name: "VIDYA SAGAR", ago: "10 months ago", text: "Best and having very easy method of teaching. It's just a piece of cake for me. Best place to learn English.", initials: "VS", color: "bg-teal-600" },
+    { name: "BULBUL FIZA TABASSUM", ago: "1 year ago", text: "The teacher is very calm and supportive and is always ready to sort out the problem. If anyone is looking for an English spoken class then please visit it at least once.", initials: "BF", color: "bg-purple-500" },
+    { name: "Ashish Pandey", ago: "1 year ago", text: "It's a better place to enhance your communication skills. Better to join early! Teaching staff really have a good command on the English language.", initials: "AP", color: "bg-secondary-blue" },
+    { name: "Pappu Oraon", ago: "1 year ago", text: "One of the best institutes in Ranchi. I promise you will enjoy learning, and the environment is amazing over here.", initials: "PO", color: "bg-primary" },
+    { name: "Abhishek Sinha", ago: "1 year ago", text: "Amazing experience. Very helpful in improving my fluency. I have never seen such a humble and down-to-earth teacher.", initials: "AB", color: "bg-green-600" },
+    { name: "Vikash Kumar Sinha", ago: "1 year ago", text: "Best spoken classes in Ranchi. I know you'll enjoy learning spoken classes here.", initials: "VK", color: "bg-blue-700" },
+    { name: "Sumit Yadav", ago: "1 year ago", text: "Sir taught me adjective of degree - good, better and best - but I found 'best' is fit for sir. Thank you sir!", initials: "SY", color: "bg-orange-500" },
+    { name: "Naseeb Anwar", ago: "1 year ago", text: "One of the best spoken classes are provided here. I'm satisfied .", initials: "NA", color: "bg-red-500" },
+    { name: "Nitesh Kumar Sharma", ago: "10 months ago", text: "Just join and enjoy the journey. I know you will not regret . Best of luck ladies and gentlemen!", initials: "NS", color: "bg-cyan-700" },
+    { name: "Subodh Kumar", ago: "3 months ago", text: "Best institute of Ranchi, Jharkhand.", initials: "SK", color: "bg-secondary-blue" },
+    { name: "Mohit Kumar", ago: "1 year ago", text: "Superb classes for learning this language. Thank you Bittu sir for helping me to be a public speaker.", initials: "MK", color: "bg-primary" },
+    { name: "VIRAT VIKRAM", ago: "1 year ago", text: "Definitely students will learn basic to advanced speaking skills here.", initials: "VV", color: "bg-red-600" },
+    { name: "Owaish Ansari", ago: "1 year ago", text: "One of the best teachers and institutes in Ranchi. They provide the best study environment.", initials: "OA", color: "bg-indigo-600" },
+    { name: "Anu Kumari", ago: "1 year ago", text: "Very helpful and effective classes are there. Join without hesitation.", initials: "AK", color: "bg-pink-500" },
+    { name: "Prabhat Singh", ago: "3 months ago", text: "Very nice teaching by the faculty here.", initials: "PS", color: "bg-teal-500" },
+    { name: "Chandan Prajapati", ago: "1 year ago", text: "Best spoken English classes in Ranchi.", initials: "CP", color: "bg-amber-500" },
+    { name: "Aakash Kumar", ago: "1 year ago", text: "One of the best classes provided here in Ranchi.", initials: "AK", color: "bg-blue-600" },
+    { name: "Shameless Sam", ago: "10 months ago", text: "Superb.... institute in the whole Ranchi town.", initials: "SS", color: "bg-slate-600" },
+    { name: "ANKIT KUMAR GUPTA", ago: "1 year ago", text: "Good environment for English speaking class. Highly recommended.", initials: "AG", color: "bg-secondary-blue" },
+    { name: "Suraj Kumar Keshri", ago: "1 year ago", text: "Best coaching centre in Ranchi.", initials: "SK", color: "bg-primary" },
+    { name: "Knowledge Entertainment LAB", ago: "11 months ago", text: "One of the best English spoken classes in Ranchi.", initials: "KE", color: "bg-violet-600" },
+    { name: "Sunita Topno", ago: "1 year ago", text: "Best of best. No doubt!", initials: "ST", color: "bg-rose-500" },
+    { name: "Pawan Kumar", ago: "1 year ago", text: "Excellent classes ever.", initials: "PK", color: "bg-emerald-600" },
+    { name: "Sunny Singh Rajput", ago: "1 year ago", text: "This place is best for learning English.", initials: "SR", color: "bg-yellow-600" },
+    { name: "Mohit Kumar", ago: "1 year ago", text: "Amazing environment!", initials: "MK", color: "bg-orange-600" },
+    { name: "Khushboo Sharma", ago: "1 year ago", text: "Excellent analysis! The way topics are broken down makes learning effortless.", initials: "KS", color: "bg-fuchsia-500" },
+    { name: "Karishma", ago: "1 week ago", text: "Joining Fluent & Fearless Spoken English Institute has been one of the best decisions. The teaching approach is remarkable and builds real confidence step by step.", initials: "KA", color: "bg-primary" },
+];
+
+let reviews = [...baseReviews];
+let visibleCount = 12;
+
+function renderReviews() {
+    const container = document.getElementById('allReviews');
+    container.innerHTML = '';
+    const slice = reviews.slice(0, visibleCount);
+    slice.forEach(r => {
+        container.innerHTML += `
+        <div class="review-card bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex flex-col gap-3">
+            <div class="stars text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="text-on-surface-variant text-sm leading-relaxed font-display flex-1">"${r.text}"</p>
+            <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                <div class="w-9 h-9 rounded-full ${r.color} text-white flex items-center justify-center font-bold font-display text-xs shrink-0">${r.initials}</div>
+                <div>
+                    <p class="font-display font-bold text-xs text-secondary-blue">${r.name}</p>
+                    <p class="text-xs text-on-surface-variant">${r.ago}</p>
+                </div>
+            </div>
+        </div>`;
+    });
+
+    if (visibleCount >= reviews.length) {
+        document.getElementById('loadMoreBtn').style.display = 'none';
+    }
+}
+
+function loadMore() {
+    visibleCount += 12;
+    renderReviews();
+}
+
+async function loadLiveReviews() {
+    try {
+        const res = await fetch('/api/reviews');
+        const data = await res.json();
+        reviews = [...(data.reviews || []), ...baseReviews];
+    } catch (error) {
+        reviews = [...baseReviews];
+    }
+    renderReviews();
+}
+
+async function submitPublicReview() {
+    const message = document.getElementById('publicReviewMessage');
+    try {
+        const payload = {
+            name: document.getElementById('publicReviewName').value,
+            email: document.getElementById('publicReviewEmail').value,
+            rating: document.getElementById('publicReviewRating').value,
+            text: document.getElementById('publicReviewText').value
+        };
+        const res = await fetch('/api/reviews', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Review submit failed');
+        document.getElementById('publicReviewText').value = '';
+        document.getElementById('publicReviewEmail').value = '';
+        message.textContent = 'Review posted successfully.';
+        visibleCount = Math.max(visibleCount, 12);
+        loadLiveReviews();
+    } catch (error) {
+        message.textContent = error.message;
+    }
+}
+
+loadLiveReviews();
+</script>
+
+</body>
+</html>
+
