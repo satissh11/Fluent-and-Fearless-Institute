@@ -12,7 +12,7 @@
     { "source": "/online-practice", "destination": "/online-practice.html" },
     { "source": "/robots.txt",      "destination": "/robots.txt" },
     { "source": "/sitemap.xml",     "destination": "/sitemap.xml" },
-    { "source": "/api/(.*)",        "destination": "/server.js" }
+    { "source": "/api/(.*)",        "destination": "/api/index" }
   ],
   "crons": [
     {
