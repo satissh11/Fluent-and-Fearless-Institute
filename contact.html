@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contact Us | Fluent & Fearless Spoken English</title>
-    <meta name="description" content="Get in touch with Fluent & Fearless. Fill out our form or call us to book your free demo class in Hinoo, Ranchi." />
-    
+    <title>Contact Fluent &amp; Fearless | Book Free Demo English Class in Ranchi | Call 092293 28115</title>
+    <meta name="description" content="Contact Fluent &amp; Fearless Spoken English in Shukla Colony, Hinoo, Ranchi. Call 092293 28115 or fill our form to book a FREE demo class. Open Mon–Sat, 10 AM–7 PM." />
+    <meta name="keywords" content="contact fluent and fearless ranchi, english classes near me ranchi, book english demo class ranchi, english institute hinoo ranchi contact, spoken english enquiry ranchi" />
+    <meta name="author" content="Fluent &amp; Fearless Spoken English" />
+    <link rel="canonical" href="https://fluent-and-fearless.vercel.app/contact.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Fluent &amp; Fearless Spoken English" />
+    <meta property="og:url"         content="https://fluent-and-fearless.vercel.app/contact.html" />
+    <meta property="og:title"       content="Contact Us | Book Free Demo | Fluent &amp; Fearless Ranchi" />
+    <meta property="og:description" content="Reach out to us at Shukla Colony, Hinoo, Ranchi. Call 092293 28115 or submit a message for a FREE demo English class." />
+    <meta property="og:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+    <meta property="og:locale"      content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Contact Fluent &amp; Fearless | Free Demo Class Ranchi" />
+    <meta name="twitter:description" content="Book a FREE demo English class at Ranchi's #1 spoken English institute. Call 092293 28115. Open Mon–Sat, 10 AM–7 PM." />
+    <meta name="twitter:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+
+    <!-- Geo -->
+    <meta name="geo.region"    content="IN-JH" />
+    <meta name="geo.placename" content="Ranchi, Jharkhand, India" />
+    <meta name="geo.position"  content="23.3290;85.3189" />
+    <meta name="ICBM"          content="23.3290, 85.3189" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,6 +61,30 @@
         }
     </script>
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Schema: ContactPage + LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Fluent & Fearless",
+      "url": "https://fluent-and-fearless.vercel.app/contact.html",
+      "mainEntity": {
+        "@type": "EducationalOrganization",
+        "name": "Fluent & Fearless Spoken English",
+        "telephone": "+919229328115",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Shukla Colony, Near Fun Cinema, Hinoo",
+          "addressLocality": "Ranchi",
+          "addressRegion": "Jharkhand",
+          "postalCode": "834002",
+          "addressCountry": "IN"
+        },
+        "openingHours": "Mo-Sa 10:00-19:00"
+      }
+    }
+    </script>
 </head>
 <body class="font-sans text-ev-black bg-white antialiased">
 
@@ -128,11 +176,11 @@
                     </div>
                     <div>
                         <label class="block font-display font-bold text-xs text-secondary-blue uppercase tracking-wider mb-2">Email Address</label>
-                        <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:outline-none transition-colors" placeholder="Enter your email" />
+                        <input type="email" id="contactEmail" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:outline-none transition-colors" placeholder="Enter your email" />
                     </div>
                     <div>
                         <label class="block font-display font-bold text-xs text-secondary-blue uppercase tracking-wider mb-2">Message</label>
-                        <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:outline-none transition-colors" placeholder="What would you like to ask us?"></textarea>
+                        <textarea id="contactMessage" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:outline-none transition-colors" placeholder="What would you like to ask us?"></textarea>
                     </div>
                     <button type="submit" class="w-full bg-gradient-to-r from-primary to-[#FF8C61] text-white font-display font-bold py-4 rounded-xl shadow-md hover:shadow-lg transition-all">
                         Submit Inquiry
@@ -201,11 +249,31 @@
 </a>
 
 <script>
-    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+    document.getElementById('inquiryForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const name = document.getElementById('contactName').value;
-        alert("Thank you, " + name + "! Your inquiry has been sent successfully. We will get in touch with you shortly.");
-        this.reset();
+        const btn = this.querySelector('button[type="submit"]');
+        const name  = document.getElementById('contactName').value.trim();
+        const email = document.getElementById('contactEmail').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+        if (!name || !email || !message) return;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, message, page: 'contact.html' })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Failed');
+            alert('Thank you, ' + name + '! Your message has been sent. We will get back to you shortly.');
+            this.reset();
+        } catch (err) {
+            alert('Sorry, something went wrong. Please call us at 092293 28115.');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Submit Inquiry';
+        }
     });
 </script>
 

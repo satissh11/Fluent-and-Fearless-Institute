@@ -1,42 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Online Speaking Practice | Fluent & Fearless</title>
-    <meta name="description" content="Subscribe to monthly speaking plans. Practice English online instantly 1-on-1 with experts." />
-    
+    <title>Online English Speaking Practice | Fluent &amp; Fearless | Plans from &#8377;999/month</title>
+    <meta name="description" content="Practice English speaking online with expert trainers from Fluent &amp; Fearless Ranchi. Basic &#8377;999, Standard &#8377;1999, Premium &#8377;3999/month. 1-on-1 sessions, instant access, no commute!" />
+    <meta name="keywords" content="online english speaking practice, online english classes ranchi, practice english online india, spoken english online course, english speaking subscription ranchi" />
+    <meta name="author" content="Fluent &amp; Fearless Spoken English" />
+    <link rel="canonical" href="https://fluent-and-fearless.vercel.app/online-practice.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Fluent &amp; Fearless Spoken English" />
+    <meta property="og:url"         content="https://fluent-and-fearless.vercel.app/online-practice.html" />
+    <meta property="og:title"       content="Online English Practice Plans | Fluent &amp; Fearless | From &#8377;999/mo" />
+    <meta property="og:description" content="Practice English online with expert coaches. 3 affordable monthly plans. Flexible, instant access from anywhere in India." />
+    <meta property="og:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+    <meta property="og:locale"      content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Online English Speaking Practice | From &#8377;999/month" />
+    <meta name="twitter:description" content="Improve your English from anywhere. Expert 1-on-1 practice sessions with Fluent &amp; Fearless trainers." />
+    <meta name="twitter:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+
+    <!-- Geo -->
+    <meta name="geo.region"    content="IN-JH" />
+    <meta name="geo.placename" content="Ranchi, Jharkhand, India" />
+    <meta name="geo.position"  content="23.3290;85.3189" />
+    <meta name="ICBM"          content="23.3290, 85.3189" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF6B35',
-                        'secondary-blue': '#004B87',
-                        'ev-black': '#0F172A',
-                        'ev-white': '#FFFFFF',
-                        'on-surface': '#0F172A',
-                        'on-surface-variant': '#475569',
-                        'surface': '#F8FAFC',
-                        'outline-variant': '#E2E8F0',
-                        'primary-fixed': '#FFE8E0',
-                    },
-                    fontFamily: {
-                        sans: ['Merriweather', 'serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: {
+            colors: { primary:'#FF6B35','secondary-blue':'#004B87','ev-black':'#0F172A','ev-white':'#FFFFFF','on-surface':'#0F172A','on-surface-variant':'#475569','surface':'#F8FAFC','outline-variant':'#E2E8F0','primary-fixed':'#FFE8E0' },
+            fontFamily: { sans:['Merriweather','serif'], display:['Outfit','sans-serif'] }
+        }}}
     </script>
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Schema: Offer/Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Online English Speaking Practice",
+      "provider": {"@type":"Organization","name":"Fluent & Fearless Spoken English","url":"https://fluent-and-fearless.vercel.app/"},
+      "description": "Online 1-on-1 English speaking practice sessions with expert trainers. Flexible monthly plans.",
+      "offers": [
+        {"@type":"Offer","name":"Basic Plan","price":"499","priceCurrency":"INR","description":"2 sessions/week online English practice"},
+        {"@type":"Offer","name":"Standard Plan","price":"799","priceCurrency":"INR","description":"4 sessions/week online English practice"},
+        {"@type":"Offer","name":"Premium Plan","price":"1199","priceCurrency":"INR","description":"Daily online English practice sessions"}
+      ]
+    }
+    </script>
 </head>
 <body class="font-sans text-ev-black bg-white antialiased">
 
@@ -116,7 +139,7 @@
                     <h3 class="font-display font-bold text-xl text-secondary-blue">Basic Plan</h3>
                     <p class="text-xs text-on-surface-variant mt-1">Practice twice a week with native trainers</p>
                     <div class="my-6">
-                        <span class="text-5xl font-extrabold text-secondary-blue">₹999</span>
+                        <span class="text-5xl font-extrabold text-secondary-blue">₹499</span>
                         <span class="text-sm text-on-surface-variant">/ month</span>
                     </div>
                     <div class="border-t border-slate-100 pt-6 space-y-4 text-sm text-on-surface-variant">
@@ -129,7 +152,7 @@
                     <label class="flex items-center gap-2 text-xs text-on-surface-variant cursor-pointer">
                         <input type="checkbox" checked class="accent-primary" /> Auto-renew monthly
                     </label>
-                    <button onclick="triggerPayment('Basic Plan', 999)" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-display text-sm font-bold py-3.5 rounded-xl">
+                    <button onclick="triggerPayment('Basic Plan', 499)" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-display text-sm font-bold py-3.5 rounded-xl">
                         Subscribe Now
                     </button>
                 </div>
@@ -142,7 +165,7 @@
                     <h3 class="font-display font-bold text-xl text-secondary-blue">Standard Plan</h3>
                     <p class="text-xs text-on-surface-variant mt-1">4 sessions per week (16 total)</p>
                     <div class="my-6">
-                        <span class="text-5xl font-extrabold text-secondary-blue">₹1999</span>
+                        <span class="text-5xl font-extrabold text-secondary-blue">₹799</span>
                         <span class="text-sm text-on-surface-variant">/ month</span>
                     </div>
                     <div class="border-t border-slate-200/50 pt-6 space-y-4 text-sm text-on-surface-variant">
@@ -155,7 +178,7 @@
                     <label class="flex items-center gap-2 text-xs text-on-surface-variant cursor-pointer">
                         <input type="checkbox" checked class="accent-primary" /> Auto-renew monthly
                     </label>
-                    <button onclick="triggerPayment('Standard Plan', 1999)" class="w-full bg-primary text-white font-display text-sm font-bold py-3.5 rounded-xl shadow-md">
+                    <button onclick="triggerPayment('Standard Plan', 799)" class="w-full bg-primary text-white font-display text-sm font-bold py-3.5 rounded-xl shadow-md">
                         Subscribe Now
                     </button>
                 </div>
@@ -167,7 +190,7 @@
                     <h3 class="font-display font-bold text-xl text-secondary-blue">Premium Plan</h3>
                     <p class="text-xs text-on-surface-variant mt-1">Daily practice sessions (30 total)</p>
                     <div class="my-6">
-                        <span class="text-5xl font-extrabold text-secondary-blue">₹3999</span>
+                        <span class="text-5xl font-extrabold text-secondary-blue">₹1199</span>
                         <span class="text-sm text-on-surface-variant">/ month</span>
                     </div>
                     <div class="border-t border-slate-100 pt-6 space-y-4 text-sm text-on-surface-variant">
@@ -180,7 +203,7 @@
                     <label class="flex items-center gap-2 text-xs text-on-surface-variant cursor-pointer">
                         <input type="checkbox" checked class="accent-primary" /> Auto-renew monthly
                     </label>
-                    <button onclick="triggerPayment('Premium Plan', 3999)" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-display text-sm font-bold py-3.5 rounded-xl">
+                    <button onclick="triggerPayment('Premium Plan', 1199)" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-display text-sm font-bold py-3.5 rounded-xl">
                         Subscribe Now
                     </button>
                 </div>
@@ -376,7 +399,7 @@
         showPaymentStatus('Creating secure Razorpay order...');
 
         try {
-            const orderRes = await fetch('/api/razorpay/order', {
+            const orderRes = await fetch(getApiBase() + '/api/razorpay/order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ identifier, plan, amount: price })
@@ -401,7 +424,7 @@
                 theme: { color: '#FF6B35' },
                 handler: async function(response) {
                     showPaymentStatus('Payment verify ho raha hai...');
-                    const verifyRes = await fetch('/api/razorpay/verify', {
+                    const verifyRes = await fetch(getApiBase() + '/api/razorpay/verify', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -446,6 +469,12 @@
         }
     }
 </script>
+
+<!-- Mobile Sticky CTA Bar -->
+<div class="mobile-cta-bar">
+    <a href="tel:09229328115" style="background:#F8FAFC;color:#004B87;border:1.5px solid #E2E8F0;">📞 Call Us</a>
+    <a href="#plans" style="background:linear-gradient(135deg,#FF6B35,#FF8C61);color:#fff;">View Plans</a>
+</div>
 
 </body>
 </html>

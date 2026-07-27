@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin
+Disallow: /dashboard.html
+Disallow: /dashboard
+Disallow: /api/
+
+Sitemap: https://fluent-and-fearless.vercel.app/sitemap.xml

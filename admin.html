@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -30,7 +30,6 @@
             <input id="adminPassword" type="password" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Admin password" />
             <button onclick="adminLogin()" class="w-full mt-4 bg-primary text-white font-bold py-3 rounded-xl">Login</button>
             <p id="adminLoginError" class="hidden text-red-600 text-sm mt-3">Wrong password.</p>
-            <p class="text-xs text-slate-400 mt-4">Default password: admin123. Hosting ke time ADMIN_PASSWORD env var set karna.</p>
         </section>
 
         <section id="adminApp" class="hidden space-y-6">
@@ -67,24 +66,22 @@
             <section class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-4">
                     <div>
-                        <h2 class="text-xl font-bold text-secondary-blue">Visitor Report</h2>
-                        <p class="text-sm text-slate-500 mt-1">Last 7 days ke website visits silently track ho rahe hain.</p>
+                        <h2 class="text-xl font-bold text-secondary-blue">Contact Leads Report</h2>
+                        <p class="text-sm text-slate-500 mt-1">People who submitted the contact form — Name, Email, Date & Page.</p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <input id="visitorPageFilter" class="border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary" placeholder="Filter page" />
-                        <select id="visitorDaysFilter" class="border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary"><option value="7">Last 7 days</option><option value="3">Last 3 days</option><option value="1">Last 24 hours</option></select>
-                        <button onclick="loadVisitors()" class="border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold">Filter</button>
-                        <button onclick="sendVisitorReportNow()" class="bg-secondary-blue text-white px-4 py-2 rounded-xl text-sm font-bold">Send Report</button>
+                        <select id="visitorDaysFilter" class="border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary"><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">All time (90d)</option></select>
+                        <button onclick="loadVisitors()" class="border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold">Refresh</button>
+                        <button onclick="sendVisitorReportNow()" class="bg-secondary-blue text-white px-4 py-2 rounded-xl text-sm font-bold">Send Weekly Report</button>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Total Visits</p><p id="visitorTotal" class="text-2xl font-black text-secondary-blue">0</p></div>
-                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Last Report</p><p id="visitorLastReport" class="text-sm font-bold text-secondary-blue">Not generated</p></div>
-                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Email Status</p><p id="visitorEmailStatus" class="text-sm font-bold text-secondary-blue">Not configured</p></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Total Inquiries</p><p id="visitorTotal" class="text-2xl font-black text-secondary-blue">0</p></div>
+                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Last Report Sent</p><p id="visitorLastReport" class="text-sm font-bold text-secondary-blue">Not generated</p></div>
                 </div>
                 <div class="overflow-x-auto max-h-[420px] overflow-y-auto">
                     <table class="w-full text-sm">
-                        <thead class="text-left text-slate-500 border-b sticky top-0 bg-white"><tr><th class="py-3">Date & Time</th><th>Page</th><th>IP Address</th><th>Browser Info</th></tr></thead>
+                        <thead class="text-left text-slate-500 border-b sticky top-0 bg-white"><tr><th class="py-3">Name</th><th>Email</th><th>Date & Time</th><th>Page</th></tr></thead>
                         <tbody id="visitorRows"></tbody>
                     </table>
                 </div>
@@ -136,7 +133,7 @@
     </main>
 
 <script>
-let adminToken = '';
+let adminToken = localStorage.getItem('ff_admin_token') || '';
 const pageImageSlots = [
     { slot: 'home.hero', label: 'Home Photo 1', current: 'hero_students.png' },
     { slot: 'home.trial', label: 'Home Photo 2', current: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80' },
@@ -147,13 +144,32 @@ const pageImageSlots = [
     { slot: 'courses.personality', label: 'Course Photo 4', current: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80' }
 ];
 
+function getApiBase() {
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0') {
+        const port = window.location.port;
+        if (port && port !== '5181') return 'http://localhost:5181';
+    }
+    return '';
+}
+
 async function api(path, options = {}) {
     const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
     if (adminToken) headers.Authorization = 'Bearer ' + adminToken;
-    const res = await fetch(path, { ...options, headers });
-    const data = await res.json();
+    const url = /^https?:\/\//i.test(path) ? path : getApiBase() + path;
+    const res = await fetch(url, { ...options, headers });
+    const text = await res.text();
+    let data = {};
+    try { data = text ? JSON.parse(text) : {}; } catch (error) { data = { error: text || 'Request failed' }; }
     if (!res.ok) throw new Error(data.error || 'Request failed');
     return data;
+}
+
+function setAdminError(message) {
+    const box = document.getElementById('adminLoginError');
+    if (!box) return;
+    box.textContent = message || 'Wrong password.';
+    box.classList.toggle('hidden', !message);
 }
 
 function escapeHtml(value) {
@@ -176,13 +192,15 @@ function fileToDataUrl(file) {
 
 async function adminLogin() {
     try {
-        const password = document.getElementById('adminPassword').value;
+        const password = document.getElementById('adminPassword').value.trim();
         const data = await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ password }) });
         adminToken = data.token;
+        localStorage.setItem('ff_admin_token', adminToken);
         document.getElementById('adminPassword').value = '';
+        setAdminError('');
         showAdmin();
     } catch (error) {
-        document.getElementById('adminLoginError').classList.remove('hidden');
+        setAdminError(error.message || 'Unable to reach the admin server. Make sure the backend is running on port 5181.');
     }
 }
 
@@ -196,9 +214,15 @@ function showAdmin() {
     loadVisitors();
 }
 
+if (adminToken) {
+    setAdminError('');
+    showAdmin();
+}
+
 function adminLogout() {
     adminToken = '';
     localStorage.removeItem('ff_admin_token');
+    setAdminError('');
     document.getElementById('adminApp').classList.add('hidden');
     document.getElementById('adminLogin').classList.remove('hidden');
     document.getElementById('adminLogoutBtn').classList.add('hidden');
@@ -331,13 +355,18 @@ async function loadVisitors() {
     if (!rows) return;
     try {
         const days = document.getElementById('visitorDaysFilter').value;
-        const page = document.getElementById('visitorPageFilter').value;
-        const data = await api('/api/admin/visitors?days=' + encodeURIComponent(days) + '&page=' + encodeURIComponent(page));
+        const data = await api('/api/admin/contacts?days=' + encodeURIComponent(days));
         document.getElementById('visitorTotal').textContent = data.total;
         const last = data.lastReport || {};
         document.getElementById('visitorLastReport').textContent = last.lastWeeklyVisitorReportFile || 'Not generated';
-        document.getElementById('visitorEmailStatus').innerHTML = (last.lastWeeklyVisitorReportEmailed ? 'Email sent' : (last.lastWeeklyVisitorReportError || 'Email not configured')) + (last.lastWeeklyVisitorReportWhatsAppLink ? ' · <a class="text-primary underline" target="_blank" href="' + escapeHtml(last.lastWeeklyVisitorReportWhatsAppLink) + '">WhatsApp</a>' : '');
-        rows.innerHTML = data.visitors.map(item => '<tr class="border-b border-slate-100"><td class="py-3 whitespace-nowrap">' + escapeHtml(new Date(item.visitedAt).toLocaleString()) + '</td><td class="font-bold text-secondary-blue">' + escapeHtml(item.page) + '</td><td>' + escapeHtml(item.ip) + '</td><td class="max-w-md truncate" title="' + escapeHtml(item.browser) + '">' + escapeHtml(item.browser) + '</td></tr>').join('') || '<tr><td class="py-6 text-slate-400" colspan="4">No visitor records found.</td></tr>';
+        rows.innerHTML = data.contacts.map(item =>
+            '<tr class="border-b border-slate-100">' +
+            '<td class="py-3 font-bold text-secondary-blue">' + escapeHtml(item.name) + '</td>' +
+            '<td>' + escapeHtml(item.email) + '</td>' +
+            '<td class="whitespace-nowrap text-slate-500">' + escapeHtml(new Date(item.submittedAt).toLocaleString()) + '</td>' +
+            '<td class="text-slate-500">' + escapeHtml(item.page || 'contact.html') + '</td>' +
+            '</tr>'
+        ).join('') || '<tr><td class="py-6 text-slate-400" colspan="4">No contact submissions yet.</td></tr>';
     } catch (error) {
         rows.innerHTML = '<tr><td class="py-6 text-red-600" colspan="4">' + escapeHtml(error.message) + '</td></tr>';
     }

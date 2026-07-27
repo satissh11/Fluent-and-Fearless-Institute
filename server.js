@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 const https = require('https');
 const tls = require('tls');
 const fs = require('fs');
@@ -6,7 +6,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const PORT = process.env.PORT || 5181;
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Bittu_sir@932';
 const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID || '';
 const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET || '';
 const RAZORPAY_COMPANY = process.env.RAZORPAY_COMPANY || 'Fluent & Fearless';
@@ -18,18 +18,24 @@ const SMTP_PASS = process.env.SMTP_PASS || '';
 const VISITOR_REPORT_WHATSAPP_NUMBER = process.env.VISITOR_REPORT_WHATSAPP_NUMBER || '919229328115';
 const SITE_URL = (process.env.SITE_URL || ('http://localhost:' + PORT)).replace(/\/$/, '');
 const ROOT = path.resolve(__dirname);
-const DB_PATH = path.join(ROOT, 'portal-db.json');
-const UPLOAD_DIR = path.join(ROOT, 'uploads');
-const REPORT_DIR = path.join(ROOT, 'reports');
+const DATA_ROOT = process.env.VERCEL ? path.join('/tmp', 'fearless-data') : ROOT;
+const DB_PATH = path.join(DATA_ROOT, 'portal-db.json');
+const SEED_DB_PATH = path.join(ROOT, 'portal-db.json');
+const UPLOAD_DIR = path.join(DATA_ROOT, 'uploads');
+const REPORT_DIR = path.join(DATA_ROOT, 'reports');
 const adminTokens = new Set();
 const studentSessions = new Map();
 
 function defaultDb() {
-  return { subscriptions: [], students: [], reviews: [], gallery: [], pages: {}, pageImages: {}, visitors: [], reportState: {} };
+  return { subscriptions: [], students: [], reviews: [], gallery: [], pages: {}, pageImages: {}, visitors: [], contacts: [], reportState: {} };
 }
 
 function readDb() {
-  if (!fs.existsSync(DB_PATH)) fs.writeFileSync(DB_PATH, JSON.stringify(defaultDb(), null, 2));
+  if (!fs.existsSync(DATA_ROOT)) fs.mkdirSync(DATA_ROOT, { recursive: true });
+  if (!fs.existsSync(DB_PATH)) {
+    if (fs.existsSync(SEED_DB_PATH)) fs.copyFileSync(SEED_DB_PATH, DB_PATH);
+    else fs.writeFileSync(DB_PATH, JSON.stringify(defaultDb(), null, 2));
+  }
   const db = JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
   db.subscriptions = db.subscriptions || [];
   db.students = db.students || [];
@@ -38,6 +44,7 @@ function readDb() {
   db.pages = db.pages || {};
   db.pageImages = db.pageImages || {};
   db.visitors = db.visitors || [];
+  db.contacts = db.contacts || [];
   db.reportState = db.reportState || {};
   return db;
 }
@@ -189,14 +196,26 @@ function getVisitorReportWhatsAppLink(report) {
 
 function generateVisitorReport(days = 7) {
   const db = readDb();
-  const visitors = getVisitorsForLastDays(db, days);
+  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+  const contacts = (db.contacts || [])
+    .filter(item => new Date(item.submittedAt).getTime() >= cutoff)
+    .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
   if (!fs.existsSync(REPORT_DIR)) fs.mkdirSync(REPORT_DIR, { recursive: true });
-  const filename = 'visitor-report-' + new Date().toISOString().slice(0, 10) + '.xls';
+  const filename = 'contact-report-' + new Date().toISOString().slice(0, 10) + '.xls';
   const filePath = path.join(REPORT_DIR, filename);
-  const rows = visitors.map(item => '<tr><td>' + htmlEscape(item.visitedAt) + '</td><td>' + htmlEscape(item.page) + '</td><td>' + htmlEscape(item.ip) + '</td><td>' + htmlEscape(item.browser) + '</td><td>' + htmlEscape(item.referrer) + '</td></tr>').join('');
-  const html = '<html><head><meta charset="utf-8"></head><body><table border="1"><thead><tr><th>Date & Time</th><th>Page</th><th>IP Address</th><th>Browser Info</th><th>Referrer</th></tr></thead><tbody>' + rows + '</tbody></table></body></html>';
+  const rows = contacts.map(item =>
+    '<tr><td>' + htmlEscape(item.name) + '</td><td>' + htmlEscape(item.email) + '</td><td>' +
+    htmlEscape(new Date(item.submittedAt).toLocaleString('en-IN')) + '</td><td>' +
+    htmlEscape(item.page || 'contact.html') + '</td></tr>'
+  ).join('');
+  const html = '<html><head><meta charset="utf-8"></head><body>' +
+    '<h2>Fluent &amp; Fearless &#8212; Weekly Contact Leads Report</h2>' +
+    '<p>Period: Last 7 days | Total Inquiries: ' + contacts.length + '</p>' +
+    '<table border="1" cellpadding="6" cellspacing="0">' +
+    '<thead><tr><th>Name</th><th>Email</th><th>Date &amp; Time</th><th>Page</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody></table></body></html>';
   fs.writeFileSync(filePath, html, 'utf8');
-  return { filePath, filename, count: visitors.length };
+  return { filePath, filename, count: contacts.length };
 }
 
 function smtpCommand(socket, command) {
@@ -392,24 +411,64 @@ async function handleApi(req, res) {
       return send(res, 200, { reviews: db.reviews.filter(item => item.status !== 'hidden').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) });
     }
 
+    // Public: submit contact form — saves name, email, date, page
+    if (req.method === 'POST' && req.url === '/api/contact') {
+      const body = await readBody(req);
+      const name  = cleanText(body.name);
+      const email = normalizeIdentifier(body.email);
+      const message = cleanText(body.message);
+      const page  = cleanText(body.page, 'contact.html');
+      if (!name || name.length < 2) return send(res, 400, { error: 'Name is required.' });
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return send(res, 400, { error: 'A valid email address is required.' });
+      if (!message) return send(res, 400, { error: 'Message is required.' });
+      const db = readDb();
+      db.contacts.push({
+        id: makeId('contact'),
+        name,
+        email,
+        message,
+        page,
+        submittedAt: new Date().toISOString()
+      });
+      writeDb(db);
+      return send(res, 200, { ok: true });
+    }
+
+    // Admin: get all contact leads
+    if (req.method === 'GET' && req.url.startsWith('/api/admin/contacts')) {
+      if (!isAdmin(req)) return send(res, 401, { error: 'Admin login required' });
+      const db = readDb();
+      const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+      const params = new URL(req.url, 'http://localhost').searchParams;
+      const days = Math.min(90, Math.max(1, Number(params.get('days') || 7)));
+      const dayCutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+      const contacts = (db.contacts || [])
+        .filter(item => new Date(item.submittedAt).getTime() >= dayCutoff)
+        .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+      return send(res, 200, { contacts, total: contacts.length, lastReport: db.reportState || {} });
+    }
+
     if (req.method === 'POST' && req.url === '/api/reviews') {
       const body = await readBody(req);
       const name = cleanText(body.name, 'Student');
       const email = normalizeIdentifier(body.email);
       const text = cleanText(body.text);
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return send(res, 400, { error: 'Certified student email required' });
-      if (!text) return send(res, 400, { error: 'Review text required' });
+      // Validate real email format
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return send(res, 400, { error: 'A valid email address is required to post a review.' });
+      if (!name || name.length < 2) return send(res, 400, { error: 'Your name is required.' });
+      if (!text || text.length < 10) return send(res, 400, { error: 'Please write at least 10 characters in your review.' });
       const db = readDb();
-      const subscription = findActiveSubscription(db, email);
-      if (!subscription) return send(res, 403, { error: 'Review sirf subscribed/certified student email se post ho sakta hai.' });
+      // One review per email address
+      const alreadyReviewed = db.reviews.some(item => item.email && item.email.toLowerCase() === email);
+      if (alreadyReviewed) return send(res, 409, { error: 'A review from this email address already exists. Each email can only submit one review.' });
       const review = {
         id: makeId('review'),
         name,
         email,
         text,
         rating: Math.min(5, Math.max(1, Number(body.rating || 5))),
-        source: 'verified_student',
-        verified: true,
+        source: 'public',
+        verified: false,
         status: 'published',
         createdAt: new Date().toISOString()
       };
@@ -448,6 +507,12 @@ async function handleApi(req, res) {
       if (!isAdmin(req)) return send(res, 401, { error: 'Admin login required' });
       const report = await runWeeklyVisitorReportIfDue(true);
       return send(res, 200, { ok: true, report });
+    }
+
+    // Vercel weekly cron endpoint — called every Monday 9 AM via vercel.json crons
+    if (req.method === 'GET' && req.url === '/api/admin/visitor-report/weekly-cron') {
+      const report = await runWeeklyVisitorReportIfDue(false);
+      return send(res, 200, { ok: true, ran: !!report, report });
     }
     if (req.url === '/api/admin/content') {
       if (!isAdmin(req)) return send(res, 401, { error: 'Admin login required' });
@@ -590,9 +655,13 @@ async function handleApi(req, res) {
 
 function serveStatic(req, res) {
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
-  const relativePath = urlPath === '/' ? 'index.html' : urlPath.replace(/^\/+/, '');
-  const filePath = path.resolve(ROOT, relativePath);
-  if (!filePath.startsWith(ROOT)) { res.writeHead(403); return res.end('Forbidden'); }
+  let relativePath = urlPath === '/' ? 'index.html' : urlPath.replace(/^\/+/, '');
+  if (!path.extname(relativePath) && fs.existsSync(path.resolve(ROOT, relativePath + '.html'))) {
+    relativePath += '.html';
+  }
+  const staticRoot = relativePath.startsWith('uploads/') || relativePath.startsWith('reports/') ? DATA_ROOT : ROOT;
+  const filePath = path.resolve(staticRoot, relativePath);
+  if (!filePath.startsWith(staticRoot)) { res.writeHead(403); return res.end('Forbidden'); }
   if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) { res.writeHead(404); return res.end('Not found'); }
   const ext = path.extname(filePath).toLowerCase();
   if (req.method === 'GET' && ext === '.html') trackVisit(req, '/' + relativePath);
@@ -601,14 +670,20 @@ function serveStatic(req, res) {
   fs.createReadStream(filePath).pipe(res);
 }
 
-setInterval(() => { runWeeklyVisitorReportIfDue().catch(error => console.warn('Weekly visitor report failed:', error.message)); }, 60 * 60 * 1000);
-runWeeklyVisitorReportIfDue().catch(error => console.warn('Weekly visitor report failed:', error.message));
-
-http.createServer((req, res) => {
+function appHandler(req, res) {
   if (req.url.startsWith('/api/')) return handleApi(req, res);
   return serveStatic(req, res);
-}).listen(PORT, () => {
-  console.log('Fluent & Fearless portal running at http://localhost:' + PORT);
-  console.log('Admin panel: http://localhost:' + PORT + '/admin.html');
-});
+}
+
+if (process.env.VERCEL) {
+  module.exports = appHandler;
+} else {
+  setInterval(() => { runWeeklyVisitorReportIfDue().catch(error => console.warn('Weekly visitor report failed:', error.message)); }, 60 * 60 * 1000);
+  runWeeklyVisitorReportIfDue().catch(error => console.warn('Weekly visitor report failed:', error.message));
+
+  http.createServer(appHandler).listen(PORT, () => {
+    console.log('Fluent & Fearless portal running at http://localhost:' + PORT);
+    console.log('Admin panel: http://localhost:' + PORT + '/admin.html');
+  });
+}
 

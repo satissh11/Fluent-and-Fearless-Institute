@@ -1,5 +1,13 @@
 {
-  "subscriptions": [],
+  "subscriptions": [
+    {
+      "identifier": "student.storage@example.com",
+      "plan": "Standard Plan",
+      "status": "active",
+      "source": "admin",
+      "createdAt": "2026-07-27T12:16:39.236Z"
+    }
+  ],
   "students": [
     {
       "identifier": "test1782810181475@student.com",
@@ -20,20 +28,20 @@
       },
       "plan": "Standard Plan",
       "createdAt": "2026-07-05T01:13:45.792Z"
+    },
+    {
+      "identifier": "student.storage@example.com",
+      "name": "Storage Test",
+      "password": {
+        "salt": "dfc8a9aa4a815b3b1197d00b41f919d8",
+        "hash": "1cfad9f19cdbcffde60aba338e55a6a20f2da346b472df864a25240119780488"
+      },
+      "plan": "Standard Plan",
+      "createdAt": "2026-07-27T12:16:39.259Z"
     }
   ],
   "reviews": [],
-  "gallery": [
-    {
-      "id": "media_mr0n5rsp_e49d68",
-      "type": "photo",
-      "title": "hello",
-      "text": "dfdskfdsfj",
-      "image": "/uploads/gallery-mr0n5rsq-40460a.png",
-      "status": "published",
-      "createdAt": "2026-06-30T12:47:13.660Z"
-    }
-  ],
+  "gallery": [],
   "pages": {},
   "pageImages": {
     "home.hero": {
@@ -359,13 +367,37 @@
       "page": "/about.html",
       "referrer": "http://localhost:5181/index.html",
       "visitedAt": "2026-07-11T02:58:47.818Z"
+    },
+    {
+      "id": "visit_ms36y7k2_e7e72a",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.130.0 Chrome/148.0.7778.280 Electron/42.6.0 Safari/537.36",
+      "page": "/admin.html",
+      "referrer": "",
+      "visitedAt": "2026-07-27T12:16:27.843Z"
+    },
+    {
+      "id": "visit_ms3713it_af6390",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/admin.html",
+      "referrer": "",
+      "visitedAt": "2026-07-27T12:18:42.581Z"
+    },
+    {
+      "id": "visit_ms37pv4u_cb879f",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "page": "/admin.html",
+      "referrer": "",
+      "visitedAt": "2026-07-27T12:37:58.110Z"
     }
   ],
   "reportState": {
-    "lastWeeklyVisitorReportAt": "2026-07-10T14:22:18.091Z",
-    "lastWeeklyVisitorReportFile": "visitor-report-2026-07-10.xls",
+    "lastWeeklyVisitorReportAt": "2026-07-27T12:08:04.334Z",
+    "lastWeeklyVisitorReportFile": "visitor-report-2026-07-27.xls",
     "lastWeeklyVisitorReportEmailed": false,
     "lastWeeklyVisitorReportError": "",
-    "lastWeeklyVisitorReportWhatsAppLink": "https://wa.me/919229328115?text=Weekly%20visitor%20report%20for%20Fluent%20%26%20Fearless%20is%20ready.%20Total%20visits%3A%202.%20Download%3A%20http%3A%2F%2Flocalhost%3A5181%2Freports%2Fvisitor-report-2026-07-10.xls"
+    "lastWeeklyVisitorReportWhatsAppLink": "https://wa.me/919229328115?text=Weekly%20visitor%20report%20for%20Fluent%20%26%20Fearless%20is%20ready.%20Total%20visits%3A%200.%20Download%3A%20http%3A%2F%2Flocalhost%3A5181%2Freports%2Fvisitor-report-2026-07-27.xls"
   }
 }

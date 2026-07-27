@@ -1,11 +1,57 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Testimonials | Fluent & Fearless Spoken English</title>
-    <meta name="description" content="Read genuine reviews from 60+ students in Ranchi who transformed their English speaking at Fluent & Fearless." />
-    
+    <title>Student Reviews &amp; Testimonials | Fluent &amp; Fearless Spoken English Ranchi | 5.0★ Rating</title>
+    <meta name="description" content="Read 68+ genuine 5-star reviews from Fluent &amp; Fearless students in Ranchi. Real success stories: job promotions, MNC placements, confident public speakers. See what our students say!" />
+    <meta name="keywords" content="fluent and fearless reviews, spoken english classes ranchi reviews, english coaching ranchi testimonials, student success stories ranchi english, best english institute ranchi reviews" />
+    <meta name="author" content="Fluent &amp; Fearless Spoken English" />
+    <link rel="canonical" href="https://fluent-and-fearless.vercel.app/testimonials.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Fluent &amp; Fearless Spoken English" />
+    <meta property="og:url"         content="https://fluent-and-fearless.vercel.app/testimonials.html" />
+    <meta property="og:title"       content="Student Reviews | Fluent &amp; Fearless Ranchi | 68+ Five-Star Reviews" />
+    <meta property="og:description" content="68+ students share their English transformation stories. Job promotions, MNC jobs, confident public speakers — all from Ranchi's #1 English institute." />
+    <meta property="og:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+    <meta property="og:locale"      content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="68+ Student Reviews | Fluent &amp; Fearless Ranchi" />
+    <meta name="twitter:description" content="Real students. Real results. Job promotions, MNC placements &amp; confident speakers from Ranchi's #1 English institute." />
+    <meta name="twitter:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+
+    <!-- Geo -->
+    <meta name="geo.region"    content="IN-JH" />
+    <meta name="geo.placename" content="Ranchi, Jharkhand, India" />
+    <meta name="geo.position"  content="23.3290;85.3189" />
+    <meta name="ICBM"          content="23.3290, 85.3189" />
+
+    <!-- Schema: AggregateRating -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Fluent & Fearless Spoken English",
+      "url": "https://fluent-and-fearless.vercel.app/",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "ratingCount": "68",
+        "reviewCount": "68"
+      },
+      "review": [
+        {"@type":"Review","author":{"@type":"Person","name":"Ritesh Prajapati"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"I was not getting promotion in my company because of English. But after completing 3 month classes at Fluent and Fearless Coaching, now I am at a good position."},
+        {"@type":"Review","author":{"@type":"Person","name":"Tulsi Karmali"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"I got a job in MNC and earning Rs 60k per month. Sir taught us very well and with patience."},
+        {"@type":"Review","author":{"@type":"Person","name":"Vinay Kumar"},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"I didn't know anything before joining but now I am an orator. Thank you so much sir."}
+      ]
+    }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -466,7 +512,7 @@ async function submitPublicReview() {
             rating: document.getElementById('publicReviewRating').value,
             text: document.getElementById('publicReviewText').value
         };
-        const res = await fetch('/api/reviews', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const res = await fetch(getApiBase() + '/api/reviews', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Review submit failed');
         document.getElementById('publicReviewText').value = '';
@@ -481,6 +527,12 @@ async function submitPublicReview() {
 
 loadLiveReviews();
 </script>
+
+<!-- Mobile Sticky CTA Bar -->
+<div class="mobile-cta-bar">
+    <a href="tel:09229328115" style="background:#F8FAFC;color:#004B87;border:1.5px solid #E2E8F0;">📞 Call Us</a>
+    <a href="contact.html" style="background:linear-gradient(135deg,#FF6B35,#FF8C61);color:#fff;">Book Free Demo</a>
+</div>
 
 </body>
 </html>

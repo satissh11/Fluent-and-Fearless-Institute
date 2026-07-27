@@ -1,11 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Our Courses | Fluent & Fearless Spoken English</title>
-    <meta name="description" content="Explore our offline communication programs in Ranchi: Spoken English, Public Speaking, Pronunciation, and Personality Development." />
-    
+    <title>English Speaking Courses in Ranchi | Fluent &amp; Fearless | Spoken English, Public Speaking</title>
+    <meta name="description" content="Explore Spoken English (Beginner to Advanced), Public Speaking, Pronunciation Correction &amp; Personality Development courses in Ranchi. Starting &#8377;1500/month. 1 free demo class!" />
+    <meta name="keywords" content="spoken english course ranchi, public speaking course ranchi, pronunciation classes ranchi, personality development ranchi, english course fees ranchi, english coaching hinoo ranchi" />
+    <meta name="author" content="Fluent &amp; Fearless Spoken English" />
+    <link rel="canonical" href="https://fluent-and-fearless.vercel.app/courses.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Fluent &amp; Fearless Spoken English" />
+    <meta property="og:url"         content="https://fluent-and-fearless.vercel.app/courses.html" />
+    <meta property="og:title"       content="English Courses in Ranchi | Spoken English, Public Speaking &amp; More" />
+    <meta property="og:description" content="4 expert courses: Spoken English, Public Speaking, Pronunciation &amp; Personality Dev. Offline &amp; online batches. Starting &#8377;1500/month. Free demo!" />
+    <meta property="og:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+    <meta property="og:locale"      content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="English Courses in Ranchi | Fluent &amp; Fearless" />
+    <meta name="twitter:description" content="Spoken English, Public Speaking, Pronunciation &amp; Personality Development. Free demo class available in Ranchi." />
+    <meta name="twitter:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+
+    <!-- Geo -->
+    <meta name="geo.region"    content="IN-JH" />
+    <meta name="geo.placename" content="Ranchi, Jharkhand, India" />
+    <meta name="geo.position"  content="23.3290;85.3189" />
+    <meta name="ICBM"          content="23.3290, 85.3189" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,29 +38,38 @@
     <!-- Tailwind Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF6B35',
-                        'secondary-blue': '#004B87',
-                        'ev-black': '#0F172A',
-                        'ev-white': '#FFFFFF',
-                        'on-surface': '#0F172A',
-                        'on-surface-variant': '#475569',
-                        'surface': '#F8FAFC',
-                        'outline-variant': '#E2E8F0',
-                        'primary-fixed': '#FFE8E0',
-                    },
-                    fontFamily: {
-                        sans: ['Merriweather', 'serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: {
+            colors: { primary:'#FF6B35','secondary-blue':'#004B87','ev-black':'#0F172A','ev-white':'#FFFFFF','on-surface':'#0F172A','on-surface-variant':'#475569','surface':'#F8FAFC','outline-variant':'#E2E8F0','primary-fixed':'#FFE8E0' },
+            fontFamily: { sans:['Merriweather','serif'], display:['Outfit','sans-serif'] }
+        }}}
     </script>
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Schema: Course ItemList + FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "English Courses at Fluent & Fearless Ranchi",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"item":{"@type":"Course","name":"Spoken English – Beginner to Advanced","description":"Daily conversation, grammar, fluency drills, group discussions. Offline batches in Ranchi.","provider":{"@type":"Organization","name":"Fluent & Fearless"},"offers":{"@type":"Offer","price":"2500","priceCurrency":"INR"}}},
+        {"@type":"ListItem","position":2,"item":{"@type":"Course","name":"Public Speaking & Oratory","description":"Stage confidence, voice modulation, debate, presentation skills.","provider":{"@type":"Organization","name":"Fluent & Fearless"},"offers":{"@type":"Offer","price":"2000","priceCurrency":"INR"}}},
+        {"@type":"ListItem","position":3,"item":{"@type":"Course","name":"Pronunciation Correction","description":"Phonetics, accent, stress patterns. All levels welcome.","provider":{"@type":"Organization","name":"Fluent & Fearless"},"offers":{"@type":"Offer","price":"1500","priceCurrency":"INR"}}},
+        {"@type":"ListItem","position":4,"item":{"@type":"Course","name":"Personality Development","description":"Body language, interview skills, leadership communication.","provider":{"@type":"Organization","name":"Fluent & Fearless"},"offers":{"@type":"Offer","price":"1800","priceCurrency":"INR"}}}
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"Is there a free trial class?","acceptedAnswer":{"@type":"Answer","text":"Yes! Fluent & Fearless offers 1 free demo class for all new students in Ranchi."}},
+        {"@type":"Question","name":"Do you provide online English classes?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer online sessions via Zoom and WhatsApp for students who cannot attend our Ranchi centre."}},
+        {"@type":"Question","name":"How long until I speak fluent English?","acceptedAnswer":{"@type":"Answer","text":"Most students see significant improvement within 3 months of consistent practice with our expert trainers."}}
+      ]
+    }
+    </script>
 </head>
 <body class="font-sans text-ev-black bg-white antialiased">
 
@@ -228,5 +261,12 @@
 </a>
 
 <script src="cms.js"></script>
+
+<!-- Mobile Sticky CTA Bar -->
+<div class="mobile-cta-bar">
+    <a href="tel:09229328115" style="background:#F8FAFC;color:#004B87;border:1.5px solid #E2E8F0;">📞 Call Now</a>
+    <a href="contact.html" style="background:linear-gradient(135deg,#FF6B35,#FF8C61);color:#fff;">Free Demo Class</a>
+</div>
+
 </body>
 </html>

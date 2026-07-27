@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Event Gallery | Fluent & Fearless Spoken English</title>
-    <meta name="description" content="View Fluent & Fearless event photos, videos, and student activity moments from Ranchi." />
+    <title>Event Gallery | Fluent &amp; Fearless Spoken English Ranchi | Student Photos &amp; Videos</title>
+    <meta name="description" content="Browse event photos, student activity moments and batch videos from Fluent &amp; Fearless Spoken English Institute, Shukla Colony, Hinoo, Ranchi. See our students shine!" />
+    <meta name="keywords" content="fluent and fearless gallery, english institute ranchi photos, spoken english events ranchi, student activities ranchi english, hinoo english coaching photos" />
+    <meta name="author" content="Fluent &amp; Fearless Spoken English" />
+    <link rel="canonical" href="https://fluent-and-fearless.vercel.app/gallery.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Fluent &amp; Fearless Spoken English" />
+    <meta property="og:url"         content="https://fluent-and-fearless.vercel.app/gallery.html" />
+    <meta property="og:title"       content="Event Gallery | Fluent &amp; Fearless Ranchi" />
+    <meta property="og:description" content="Photos &amp; videos from our Ranchi English classes, events, and student activities. 500+ students transformed at Fluent &amp; Fearless." />
+    <meta property="og:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+    <meta property="og:locale"      content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Gallery | Fluent &amp; Fearless English Institute Ranchi" />
+    <meta name="twitter:description" content="See our students in action. Event photos and videos from Ranchi's #1 English institute." />
+    <meta name="twitter:image"       content="https://fluent-and-fearless.vercel.app/hero_students.png" />
+
+    <!-- Geo -->
+    <meta name="geo.region"    content="IN-JH" />
+    <meta name="geo.placename" content="Ranchi, Jharkhand, India" />
+    <meta name="geo.position"  content="23.3290;85.3189" />
+    <meta name="ICBM"          content="23.3290, 85.3189" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
@@ -236,9 +261,18 @@ function escapeGallery(value) {
     return String(value || '').replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 }
 
+function getApiBase() {
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0') {
+        const port = window.location.port;
+        if (port && port !== '5181') return 'http://localhost:5181';
+    }
+    return '';
+}
+
 async function loadAdminGallery() {
     try {
-        const res = await fetch('/api/gallery');
+        const res = await fetch(getApiBase() + '/api/gallery');
         const data = await res.json();
         const grid = document.getElementById('galleryGrid');
         if (data.gallery && data.gallery.length) {
@@ -249,6 +283,12 @@ async function loadAdminGallery() {
 
 loadAdminGallery();
 </script>
+
+<!-- Mobile Sticky CTA Bar -->
+<div class="mobile-cta-bar">
+    <a href="tel:09229328115" style="background:#F8FAFC;color:#004B87;border:1.5px solid #E2E8F0;">📞 Call Us</a>
+    <a href="contact.html" style="background:linear-gradient(135deg,#FF6B35,#FF8C61);color:#fff;">Book Free Demo</a>
+</div>
 
 </body>
 </html>

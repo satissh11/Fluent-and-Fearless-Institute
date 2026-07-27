@@ -1,0 +1,23 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/gallery",         "destination": "/gallery.html" },
+    { "source": "/admin",           "destination": "/admin.html" },
+    { "source": "/about",           "destination": "/about.html" },
+    { "source": "/courses",         "destination": "/courses.html" },
+    { "source": "/contact",         "destination": "/contact.html" },
+    { "source": "/testimonials",    "destination": "/testimonials.html" },
+    { "source": "/dashboard",       "destination": "/dashboard.html" },
+    { "source": "/online-practice", "destination": "/online-practice.html" },
+    { "source": "/robots.txt",      "destination": "/robots.txt" },
+    { "source": "/sitemap.xml",     "destination": "/sitemap.xml" },
+    { "source": "/api/(.*)",        "destination": "/server.js" }
+  ],
+  "crons": [
+    {
+      "path": "/api/admin/visitor-report/weekly-cron",
+      "schedule": "0 9 * * 1"
+    }
+  ]
+}
