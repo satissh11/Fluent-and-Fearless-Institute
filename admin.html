@@ -148,7 +148,7 @@ function getApiBase() {
     const hostname = window.location.hostname;
     if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0') {
         const port = window.location.port;
-        if (port && port !== '5181') return 'http://localhost:5181';
+        if (port && port !== '5181') return 'http://127.0.0.1:5181';
     }
     return '';
 }
@@ -156,8 +156,14 @@ function getApiBase() {
 async function api(path, options = {}) {
     const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
     if (adminToken) headers.Authorization = 'Bearer ' + adminToken;
-    const url = /^https?:\/\//i.test(path) ? path : getApiBase() + path;
-    const res = await fetch(url, { ...options, headers });
+    const base = getApiBase();
+    const url = /^https?:\/\//i.test(path) ? path : (base + path);
+    let res;
+    try {
+        res = await fetch(url, { ...options, headers });
+    } catch (error) {
+        throw new Error('Failed to connect to the admin server. Make sure the backend is running on http://localhost:5181.');
+    }
     const text = await res.text();
     let data = {};
     try { data = text ? JSON.parse(text) : {}; } catch (error) { data = { error: text || 'Request failed' }; }

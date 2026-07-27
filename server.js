@@ -57,9 +57,16 @@ function normalizeIdentifier(value) {
   return String(value || '').trim().toLowerCase();
 }
 
-function send(res, status, data) {
-  res.writeHead(status, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify(data));
+function send(res, status, data, extraHeaders = {}) {
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+  };
+  Object.entries(extraHeaders).forEach(([key, value]) => { headers[key] = value; });
+  res.writeHead(status, headers);
+  res.end(typeof data === 'string' ? data : JSON.stringify(data));
 }
 
 function readBody(req) {
@@ -310,6 +317,15 @@ function saveUploadedDataUrl(dataUrl, prefix = 'image') {
 
 async function handleApi(req, res) {
   try {
+    if (req.method === 'OPTIONS' && req.url.startsWith('/api/')) {
+      res.writeHead(204, {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
+      });
+      return res.end();
+    }
+
     if (req.method === 'POST' && req.url === '/api/admin/login') {
       const body = await readBody(req);
       if (body.password !== ADMIN_PASSWORD) return send(res, 401, { error: 'Wrong admin password' });

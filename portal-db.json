@@ -391,6 +391,22 @@
       "page": "/admin.html",
       "referrer": "",
       "visitedAt": "2026-07-27T12:37:58.110Z"
+    },
+    {
+      "id": "visit_ms38bfsq_63347b",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8875",
+      "page": "/index.html",
+      "referrer": "",
+      "visitedAt": "2026-07-27T12:54:44.666Z"
+    },
+    {
+      "id": "visit_ms38ggh5_4d690a",
+      "ip": "::1",
+      "browser": "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-IN) WindowsPowerShell/5.1.26100.8875",
+      "page": "/index.html",
+      "referrer": "",
+      "visitedAt": "2026-07-27T12:58:38.825Z"
     }
   ],
   "reportState": {
@@ -399,5 +415,6 @@
     "lastWeeklyVisitorReportEmailed": false,
     "lastWeeklyVisitorReportError": "",
     "lastWeeklyVisitorReportWhatsAppLink": "https://wa.me/919229328115?text=Weekly%20visitor%20report%20for%20Fluent%20%26%20Fearless%20is%20ready.%20Total%20visits%3A%200.%20Download%3A%20http%3A%2F%2Flocalhost%3A5181%2Freports%2Fvisitor-report-2026-07-27.xls"
-  }
+  },
+  "contacts": []
 }
