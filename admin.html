@@ -250,10 +250,19 @@ function showAdmin() {
     loadVisitors();
 }
 
-if (adminToken) {
-    setAdminError('');
-    showAdmin();
+async function restoreAdminSession() {
+    if (!adminToken) return;
+    try {
+        await api('/api/admin/content');
+        setAdminError('');
+        showAdmin();
+    } catch (error) {
+        adminLogout();
+        setAdminError('Admin session expired. Please login again.');
+    }
 }
+
+restoreAdminSession();
 
 function adminLogout() {
     adminToken = '';
@@ -306,9 +315,12 @@ async function loadAdminData() {
 
 async function loadContentData() {
     try {
-        const data = await api('/api/admin/content');
-        renderAdminReviews(data.reviews || []);
-        renderAdminGallery(data.gallery || []);
+        const [content, galleryData] = await Promise.all([
+            api('/api/admin/content'),
+            api('/api/admin/gallery')
+        ]);
+        renderAdminReviews(content.reviews || []);
+        renderAdminGallery(galleryData.gallery || content.gallery || []);
     } catch (error) {
         console.warn(error.message);
     }

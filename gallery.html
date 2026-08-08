@@ -62,6 +62,7 @@
         .gallery-card:hover { transform: translateY(-5px); box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14); }
         .gallery-card img { transition: transform 0.45s ease; }
         .gallery-card:hover img { transform: scale(1.06); }
+        #galleryGrid > .gallery-card:not([data-dynamic="true"]) { display: none; }
         .filter-btn.active { background: #FF6B35; color: #fff; border-color: #FF6B35; }
     </style>
 </head>
@@ -249,6 +250,7 @@ function createGalleryCard(item) {
     const dark = item.type === 'video';
     button.type = 'button';
     button.dataset.type = item.type;
+    button.dataset.dynamic = 'true';
     button.className = 'gallery-card ' + (dark ? 'bg-slate-950 relative text-white' : 'bg-white') + ' rounded-3xl overflow-hidden border border-slate-100 shadow-sm text-left cursor-pointer';
     button.addEventListener('click', () => openGalleryModal(item.type, item.title, item.text, item.image));
     button.innerHTML = '<div class="aspect-[4/3] overflow-hidden"><img src="' + escapeGallery(item.image) + '" alt="' + escapeGallery(item.title) + '" class="w-full h-full object-cover ' + (dark ? 'opacity-80' : '') + '" /></div>' + (dark ? '<div class="absolute inset-0 flex items-center justify-center"><span class="w-14 h-14 rounded-full bg-white text-primary flex items-center justify-center shadow-xl"><svg class="w-6 h-6 ml-1 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span></div><div class="absolute left-4 right-4 bottom-4"><p class="font-display font-bold text-sm">' + escapeGallery(item.title) + '</p><p class="text-xs text-slate-300">' + label + '</p></div>' : '<div class="p-5"><span class="text-xs font-display font-bold text-primary">' + label + '</span><p class="font-display font-bold text-secondary-blue mt-1">' + escapeGallery(item.title) + '</p><p class="text-xs text-on-surface-variant mt-1">' + escapeGallery(item.text) + '</p></div>');

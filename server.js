@@ -17,18 +17,28 @@ const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_PASS = process.env.SMTP_PASS || '';
 const VISITOR_REPORT_WHATSAPP_NUMBER = process.env.VISITOR_REPORT_WHATSAPP_NUMBER || '919229328115';
 const SITE_URL = (process.env.SITE_URL || ('http://localhost:' + PORT)).replace(/\/$/, '');
+const ADMIN_TOKEN_SECRET = process.env.ADMIN_TOKEN_SECRET || crypto.createHash('sha256').update(ADMIN_PASSWORD).digest('hex');
+const ADMIN_TOKEN_TTL = 12 * 60 * 60 * 1000;
 const ROOT = path.resolve(__dirname);
 const DATA_ROOT = process.env.VERCEL ? path.join('/tmp', 'fearless-data') : ROOT;
 const DB_PATH = path.join(DATA_ROOT, 'portal-db.json');
 const SEED_DB_PATH = path.join(ROOT, 'portal-db.json');
 const UPLOAD_DIR = path.join(DATA_ROOT, 'uploads');
 const REPORT_DIR = path.join(DATA_ROOT, 'reports');
-const adminTokens = new Set();
 const studentSessions = new Map();
 
 function defaultDb() {
-  return { subscriptions: [], students: [], reviews: [], gallery: [], pages: {}, pageImages: {}, visitors: [], contacts: [], reportState: {} };
+  return { subscriptions: [], students: [], reviews: [], gallery: [], galleryHidden: [], galleryOverrides: {}, pages: {}, pageImages: {}, visitors: [], contacts: [], reportState: {} };
 }
+
+const DEFAULT_GALLERY = [
+  { id: 'default_public-speaking-day', type: 'event', title: 'Public Speaking Practice Day', text: 'Students presenting live topics and building stage confidence.', image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1100&q=80', createdAt: '2026-01-06T00:00:00.000Z' },
+  { id: 'default_group-discussion', type: 'photo', title: 'Group Discussion', text: 'Interactive speaking circle from our student event.', image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80', createdAt: '2026-01-05T00:00:00.000Z' },
+  { id: 'default_trainer-feedback', type: 'photo', title: 'Trainer Feedback', text: 'One-to-one improvement notes and mentoring session.', image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80', createdAt: '2026-01-04T00:00:00.000Z' },
+  { id: 'default_classroom-activity', type: 'video', title: 'Classroom Activity Video', text: 'Dummy video preview for classroom practice activities.', image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80', createdAt: '2026-01-03T00:00:00.000Z' },
+  { id: 'default_student-achievement', type: 'video', title: 'Student Achievement Video', text: 'Dummy video preview for student achievement moments.', image: 'https://images.unsplash.com/photo-1544531585-9847b68c8c86?auto=format&fit=crop&w=900&q=80', createdAt: '2026-01-02T00:00:00.000Z' },
+  { id: 'default_confidence-workshop', type: 'event', title: 'Confidence Workshop', text: 'Students practicing introductions, interviews, and stage presence.', image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80', createdAt: '2026-01-01T00:00:00.000Z' }
+];
 
 function readDb() {
   if (!fs.existsSync(DATA_ROOT)) fs.mkdirSync(DATA_ROOT, { recursive: true });
@@ -41,6 +51,8 @@ function readDb() {
   db.students = db.students || [];
   db.reviews = db.reviews || [];
   db.gallery = db.gallery || [];
+  db.galleryHidden = db.galleryHidden || [];
+  db.galleryOverrides = db.galleryOverrides || {};
   db.pages = db.pages || {};
   db.pageImages = db.pageImages || {};
   db.visitors = db.visitors || [];
@@ -51,6 +63,15 @@ function readDb() {
 
 function writeDb(db) {
   fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 2));
+}
+
+function getGalleryItems(db) {
+  const hidden = new Set(db.galleryHidden || []);
+  const defaults = DEFAULT_GALLERY
+    .filter(item => !hidden.has(item.id))
+    .map(item => ({ ...item, ...(db.galleryOverrides[item.id] || {}) }));
+  const uploaded = db.gallery.filter(item => item.status !== 'hidden');
+  return [...defaults, ...uploaded].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 
 function normalizeIdentifier(value) {
@@ -84,6 +105,12 @@ function readBody(req) {
 
 function makeToken() {
   return crypto.randomBytes(24).toString('hex');
+}
+
+function makeAdminToken() {
+  const payload = Date.now().toString(36) + '.' + makeToken();
+  const signature = crypto.createHmac('sha256', ADMIN_TOKEN_SECRET).update(payload).digest('hex');
+  return payload + '.' + signature;
 }
 
 function hashPassword(password, salt = crypto.randomBytes(16).toString('hex')) {
@@ -140,7 +167,13 @@ function verifyRazorpaySignature(orderId, paymentId, signature) {
 
 function isAdmin(req) {
   const token = (req.headers.authorization || '').replace('Bearer ', '');
-  return adminTokens.has(token);
+  const parts = token.split('.');
+  if (parts.length !== 3) return false;
+  const issuedAt = parseInt(parts[0], 36);
+  if (!issuedAt || Date.now() - issuedAt > ADMIN_TOKEN_TTL) return false;
+  const expected = crypto.createHmac('sha256', ADMIN_TOKEN_SECRET).update(parts[0] + '.' + parts[1]).digest('hex');
+  if (parts[2].length !== expected.length) return false;
+  return crypto.timingSafeEqual(Buffer.from(parts[2]), Buffer.from(expected));
 }
 
 function getStudent(req) {
@@ -331,9 +364,7 @@ async function handleApi(req, res) {
     if (req.method === 'POST' && req.url === '/api/admin/login') {
       const body = await readBody(req);
       if (body.password !== ADMIN_PASSWORD) return send(res, 401, { error: 'Wrong admin password' });
-      const token = makeToken();
-      adminTokens.add(token);
-      return send(res, 200, { token });
+      return send(res, 200, { token: makeAdminToken(), expiresIn: ADMIN_TOKEN_TTL });
     }
 
     if (req.url.startsWith('/api/admin/subscriptions')) {
@@ -497,7 +528,7 @@ async function handleApi(req, res) {
 
     if (req.method === 'GET' && req.url === '/api/gallery') {
       const db = readDb();
-      return send(res, 200, { gallery: db.gallery.filter(item => item.status !== 'hidden').sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) });
+      return send(res, 200, { gallery: getGalleryItems(db) });
     }
 
     if (req.method === 'GET' && req.url === '/api/pages') {
@@ -568,6 +599,9 @@ async function handleApi(req, res) {
     if (req.url.startsWith('/api/admin/gallery')) {
       if (!isAdmin(req)) return send(res, 401, { error: 'Admin login required' });
       const db = readDb();
+      if (req.method === 'GET') {
+        return send(res, 200, { gallery: getGalleryItems(db) });
+      }
       if (req.method === 'POST') {
         const body = await readBody(req);
         const item = {
@@ -587,8 +621,20 @@ async function handleApi(req, res) {
       if (req.method === 'PUT' || req.method === 'PATCH') {
         const id = new URL(req.url, 'http://localhost').searchParams.get('id');
         const item = db.gallery.find(entry => entry.id === id);
-        if (!item) return send(res, 404, { error: 'Gallery item not found' });
         const body = await readBody(req);
+        if (!item && DEFAULT_GALLERY.some(entry => entry.id === id)) {
+          db.galleryOverrides[id] = {
+            title: cleanText(body.title),
+            text: cleanText(body.text),
+            type: ['photo', 'video', 'event'].includes(body.type) ? body.type : 'photo',
+            image: body.imageData ? saveUploadedDataUrl(body.imageData, 'gallery') : undefined,
+            updatedAt: new Date().toISOString()
+          };
+          if (!db.galleryOverrides[id].image) delete db.galleryOverrides[id].image;
+          writeDb(db);
+          return send(res, 200, { ok: true, item: { ...DEFAULT_GALLERY.find(entry => entry.id === id), ...db.galleryOverrides[id] } });
+        }
+        if (!item) return send(res, 404, { error: 'Gallery item not found' });
         item.type = ['photo', 'video', 'event'].includes(body.type) ? body.type : item.type;
         item.title = cleanText(body.title, item.title);
         item.text = cleanText(body.text, item.text);
@@ -599,6 +645,11 @@ async function handleApi(req, res) {
       }
       if (req.method === 'DELETE') {
         const id = new URL(req.url, 'http://localhost').searchParams.get('id');
+        if (DEFAULT_GALLERY.some(entry => entry.id === id)) {
+          if (!db.galleryHidden.includes(id)) db.galleryHidden.push(id);
+          writeDb(db);
+          return send(res, 200, { ok: true });
+        }
         db.gallery = db.gallery.filter(item => item.id !== id);
         writeDb(db);
         return send(res, 200, { ok: true });
