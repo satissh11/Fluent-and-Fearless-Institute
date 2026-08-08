@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,7 +14,7 @@
     <main class="max-w-7xl mx-auto px-4 py-10">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
             <div>
-                <a href="index.html" class="font-black text-2xl text-secondary-blue">Fluent <span class="text-primary">&</span> Fearless</a>
+                <a href="index.html" class="inline-flex items-center"><img src="logo.png" alt="Fluent &amp; Fearless Spoken English" class="h-12 w-auto" /></a>
                 <h1 class="text-3xl font-extrabold text-secondary-blue mt-3">Admin Panel</h1>
                 <p class="text-slate-500 text-sm mt-1">Subscriptions, reviews, page photos, gallery media aur page content manage karein.</p>
             </div>
@@ -33,7 +33,18 @@
         </section>
 
         <section id="adminApp" class="hidden space-y-6">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm sticky top-2 z-20">
+                <div class="flex flex-wrap gap-2">
+                    <a href="#subscriptions" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Subscriptions</a>
+                    <a href="#reports" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Reports</a>
+                    <a href="#photos" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Page Photos</a>
+                    <a href="#reviews" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Reviews</a>
+                    <a href="#gallery-admin" class="px-4 py-2 rounded-xl bg-primary text-white text-sm font-bold">Gallery</a>
+                    <a href="#page-editor" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Page Editor</a>
+                </div>
+            </div>
+
+            <div id="subscriptions" class="grid grid-cols-1 lg:grid-cols-3 gap-6 scroll-mt-24">
                 <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <h2 class="text-xl font-bold text-secondary-blue mb-4">Add Subscribed User</h2>
                     <div class="space-y-4">
@@ -63,11 +74,11 @@
             </div>
 
 
-            <section class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <section id="reports" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
                 <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-4">
                     <div>
                         <h2 class="text-xl font-bold text-secondary-blue">Contact Leads Report</h2>
-                        <p class="text-sm text-slate-500 mt-1">People who submitted the contact form — Name, Email, Date & Page.</p>
+                        <p class="text-sm text-slate-500 mt-1">People who submitted the contact form â€” Name, Email, Date & Page.</p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <select id="visitorDaysFilter" class="border border-slate-200 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary"><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">All time (90d)</option></select>
@@ -75,9 +86,10 @@
                         <button onclick="sendVisitorReportNow()" class="bg-secondary-blue text-white px-4 py-2 rounded-xl text-sm font-bold">Send Weekly Report</button>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                     <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Total Inquiries</p><p id="visitorTotal" class="text-2xl font-black text-secondary-blue">0</p></div>
                     <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Last Report Sent</p><p id="visitorLastReport" class="text-sm font-bold text-secondary-blue">Not generated</p></div>
+                    <div class="bg-slate-50 rounded-xl p-4"><p class="text-xs text-slate-500">Report Status</p><p id="visitorEmailStatus" class="text-sm font-bold text-secondary-blue">Ready</p></div>
                 </div>
                 <div class="overflow-x-auto max-h-[420px] overflow-y-auto">
                     <table class="w-full text-sm">
@@ -87,7 +99,7 @@
                 </div>
             </section>
 
-            <section class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <section id="photos" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
                 <div class="flex items-center justify-between gap-4 mb-4">
                     <div>
                         <h2 class="text-xl font-bold text-secondary-blue">Page Photos</h2>
@@ -99,25 +111,26 @@
             </section>
 
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div id="reviews" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
                     <h2 class="text-xl font-bold text-secondary-blue mb-4">Manage Reviews</h2>
                     <p class="text-sm text-slate-500 mb-4">Testimonials reviews yahan sirf delete kar sakte hain. Naya review public testimonials form se aayega.</p>
                     <div id="reviewRows" class="mt-5 space-y-3 max-h-[520px] overflow-y-auto"></div>
                 </div>
 
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div id="gallery-admin" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
                     <h2 class="text-xl font-bold text-secondary-blue mb-4">Manage Gallery</h2>
                     <div class="space-y-3">
                         <input id="mediaTitle" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Title" />
                         <input id="mediaImage" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" />
                         <textarea id="mediaText" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary min-h-24" placeholder="Description"></textarea>
                         <select id="mediaType" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"><option value="photo">Image</option><option value="video">Video</option><option value="event">Event</option></select>
-                        <button onclick="addMedia()" class="w-full bg-primary text-white font-bold py-3 rounded-xl">Add Media</button>
+                        <button onclick="addMedia()" class="w-full bg-primary text-white font-bold py-3 rounded-xl">Upload Gallery Media</button>
+                        <p id="mediaMessage" class="text-sm text-slate-500"></p>
                     </div>
                     <div id="mediaRows" class="mt-5 space-y-3 max-h-[520px] overflow-y-auto"></div>
                 </div>
 
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                <div id="page-editor" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
                     <h2 class="text-xl font-bold text-secondary-blue mb-4">Page Editor</h2>
                     <div class="space-y-3">
                         <select id="pageKey" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"><option value="home">Home</option><option value="testimonials">Testimonials</option><option value="gallery">Gallery</option><option value="courses">Courses</option><option value="about">About</option><option value="contact">Contact</option></select>
@@ -190,7 +203,24 @@ function fileToDataUrl(file) {
     return new Promise((resolve, reject) => {
         if (!file) return reject(new Error('Image file select karein.'));
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
+        reader.onload = () => {
+            if (file.type === 'image/gif') return resolve(reader.result);
+            const image = new Image();
+            image.onload = () => {
+                const maxSize = 1400;
+                const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.max(1, Math.round(image.width * scale));
+                canvas.height = Math.max(1, Math.round(image.height * scale));
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                resolve(canvas.toDataURL('image/jpeg', 0.82));
+            };
+            image.onerror = () => resolve(reader.result);
+            image.src = reader.result;
+        };
         reader.onerror = () => reject(new Error('Image read nahi ho paayi.'));
         reader.readAsDataURL(file);
     });
@@ -335,12 +365,19 @@ function renderAdminReviews(reviews) {
 
 async function addMedia() {
     const fileInput = document.getElementById('mediaImage');
-    const imageData = await fileToDataUrl(fileInput.files[0]);
-    await api('/api/admin/gallery', { method: 'POST', body: JSON.stringify({ title: document.getElementById('mediaTitle').value, imageData, text: document.getElementById('mediaText').value, type: document.getElementById('mediaType').value }) });
-    document.getElementById('mediaTitle').value = '';
-    fileInput.value = '';
-    document.getElementById('mediaText').value = '';
-    loadContentData();
+    let imageData = '';
+    const message = document.getElementById('mediaMessage');
+    try {
+        imageData = await fileToDataUrl(fileInput.files[0]);
+        await api('/api/admin/gallery', { method: 'POST', body: JSON.stringify({ title: document.getElementById('mediaTitle').value, imageData, text: document.getElementById('mediaText').value, type: document.getElementById('mediaType').value }) });
+        document.getElementById('mediaTitle').value = '';
+        fileInput.value = '';
+        document.getElementById('mediaText').value = '';
+        if (message) message.textContent = 'Gallery item uploaded.';
+        loadContentData();
+    } catch (error) {
+        if (message) message.textContent = error.message;
+    }
 }
 
 async function deleteMedia(id) {
@@ -348,11 +385,42 @@ async function deleteMedia(id) {
     loadContentData();
 }
 
+function mediaFieldId(id, field) {
+    return 'media-' + field + '-' + String(id).replace(/[^a-z0-9_-]/gi, '-');
+}
+
+async function updateMedia(id) {
+    const message = document.getElementById('mediaMessage');
+    const fileInput = document.getElementById(mediaFieldId(id, 'file'));
+    const payload = {
+        title: document.getElementById(mediaFieldId(id, 'title')).value,
+        text: document.getElementById(mediaFieldId(id, 'text')).value,
+        type: document.getElementById(mediaFieldId(id, 'type')).value
+    };
+    try {
+        if (fileInput.files[0]) payload.imageData = await fileToDataUrl(fileInput.files[0]);
+        await api('/api/admin/gallery?id=' + encodeURIComponent(id), { method: 'PUT', body: JSON.stringify(payload) });
+        if (message) message.textContent = 'Gallery item updated.';
+        loadContentData();
+    } catch (error) {
+        if (message) message.textContent = error.message;
+    }
+}
+
 function renderAdminGallery(items) {
     const target = document.getElementById('mediaRows');
     target.innerHTML = items.map(item => {
-        return '<div class="border border-slate-100 rounded-xl p-3 flex gap-3"><img src="' + escapeHtml(item.image) + '" class="w-16 h-16 object-cover rounded-lg bg-slate-100" /><div class="flex-1"><div class="flex justify-between gap-3"><p class="font-bold text-secondary-blue">' + escapeHtml(item.title) + '</p><button data-media-id="' + escapeHtml(item.id) + '" class="delete-media text-red-600 text-xs font-bold">Delete</button></div><p class="text-xs text-primary font-bold">' + escapeHtml(item.type) + '</p><p class="text-sm text-slate-600 mt-1">' + escapeHtml(item.text) + '</p></div></div>';
+        const typeOptions = ['photo', 'video', 'event'].map(type => '<option value="' + type + '"' + (item.type === type ? ' selected' : '') + '>' + type + '</option>').join('');
+        return '<div class="border border-slate-100 rounded-xl p-3 space-y-3">' +
+            '<div class="flex gap-3"><img src="' + escapeHtml(item.image) + '" class="w-20 h-20 object-cover rounded-lg bg-slate-100" /><div class="flex-1"><p class="font-bold text-secondary-blue">' + escapeHtml(item.title) + '</p><p class="text-xs text-slate-400">' + escapeHtml(item.id) + '</p></div></div>' +
+            '<input id="' + mediaFieldId(item.id, 'title') + '" value="' + escapeHtml(item.title) + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary" />' +
+            '<select id="' + mediaFieldId(item.id, 'type') + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary">' + typeOptions + '</select>' +
+            '<textarea id="' + mediaFieldId(item.id, 'text') + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary min-h-20">' + escapeHtml(item.text) + '</textarea>' +
+            '<input id="' + mediaFieldId(item.id, 'file') + '" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary" />' +
+            '<div class="flex gap-2"><button data-media-id="' + escapeHtml(item.id) + '" class="update-media flex-1 bg-secondary-blue text-white text-xs font-bold py-2 rounded-xl">Update</button><button data-media-id="' + escapeHtml(item.id) + '" class="delete-media flex-1 border border-red-200 text-red-600 text-xs font-bold py-2 rounded-xl">Delete</button></div>' +
+            '</div>';
     }).join('') || '<p class="text-sm text-slate-400">No gallery items yet.</p>';
+    target.querySelectorAll('.update-media').forEach(button => button.addEventListener('click', () => updateMedia(button.dataset.mediaId)));
     target.querySelectorAll('.delete-media').forEach(button => button.addEventListener('click', () => deleteMedia(button.dataset.mediaId)));
 }
 
@@ -383,7 +451,7 @@ async function sendVisitorReportNow() {
     try {
         status.textContent = 'Generating...';
         const data = await api('/api/admin/visitor-report/send-now', { method: 'POST', body: JSON.stringify({}) });
-        status.innerHTML = (data.report.emailed ? 'Email sent' : (data.report.emailError || 'Generated, email not configured')) + (data.report.whatsAppLink ? ' · <a class="text-primary underline" target="_blank" href="' + escapeHtml(data.report.whatsAppLink) + '">WhatsApp</a>' : '');
+        status.innerHTML = (data.report.emailed ? 'Email sent' : (data.report.emailError || 'Generated, email not configured')) + (data.report.whatsAppLink ? ' Â· <a class="text-primary underline" target="_blank" href="' + escapeHtml(data.report.whatsAppLink) + '">WhatsApp</a>' : '');
         loadVisitors();
     } catch (error) {
         status.textContent = error.message;

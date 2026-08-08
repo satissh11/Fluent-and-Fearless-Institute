@@ -304,10 +304,12 @@ async function runWeeklyVisitorReportIfDue(force = false) {
 function saveUploadedDataUrl(dataUrl, prefix = 'image') {
   const match = String(dataUrl || '').match(/^data:(image\/(png|jpeg|jpg|webp|gif));base64,(.+)$/);
   if (!match) throw new Error('Valid image file required');
+  const normalizedDataUrl = 'data:' + match[1] + ';base64,' + match[3];
   const ext = match[2] === 'jpeg' ? 'jpg' : match[2];
   const bytes = Buffer.from(match[3], 'base64');
   if (!bytes.length) throw new Error('Empty image file');
   if (bytes.length > 6 * 1024 * 1024) throw new Error('Image must be under 6MB');
+  if (process.env.VERCEL || process.env.STORE_UPLOADS_IN_DB === '1') return normalizedDataUrl;
   if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
   const safePrefix = String(prefix || 'image').replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
   const filename = safePrefix + '-' + Date.now().toString(36) + '-' + crypto.randomBytes(3).toString('hex') + '.' + ext;
@@ -582,6 +584,19 @@ async function handleApi(req, res) {
         writeDb(db);
         return send(res, 200, { ok: true, item });
       }
+      if (req.method === 'PUT' || req.method === 'PATCH') {
+        const id = new URL(req.url, 'http://localhost').searchParams.get('id');
+        const item = db.gallery.find(entry => entry.id === id);
+        if (!item) return send(res, 404, { error: 'Gallery item not found' });
+        const body = await readBody(req);
+        item.type = ['photo', 'video', 'event'].includes(body.type) ? body.type : item.type;
+        item.title = cleanText(body.title, item.title);
+        item.text = cleanText(body.text, item.text);
+        if (body.imageData) item.image = saveUploadedDataUrl(body.imageData, 'gallery');
+        item.updatedAt = new Date().toISOString();
+        writeDb(db);
+        return send(res, 200, { ok: true, item });
+      }
       if (req.method === 'DELETE') {
         const id = new URL(req.url, 'http://localhost').searchParams.get('id');
         db.gallery = db.gallery.filter(item => item.id !== id);
@@ -702,4 +717,3 @@ if (process.env.VERCEL) {
     console.log('Admin panel: http://localhost:' + PORT + '/admin.html');
   });
 }
-
