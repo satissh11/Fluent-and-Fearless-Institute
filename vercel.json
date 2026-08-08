@@ -7,6 +7,12 @@
     },
     "api/[...path].js": {
       "includeFiles": "portal-db.json"
+    },
+    "api/admin/login.js": {
+      "includeFiles": "portal-db.json"
+    },
+    "api/admin/[...path].js": {
+      "includeFiles": "portal-db.json"
     }
   },
   "rewrites": [
