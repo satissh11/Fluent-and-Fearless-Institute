@@ -2,16 +2,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/index.js": {
-      "includeFiles": "portal-db.json"
-    },
     "api/[...path].js": {
-      "includeFiles": "portal-db.json"
-    },
-    "api/admin/login.js": {
-      "includeFiles": "portal-db.json"
-    },
-    "api/admin/[...path].js": {
       "includeFiles": "portal-db.json"
     }
   },
