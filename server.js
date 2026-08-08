@@ -753,7 +753,13 @@ function serveStatic(req, res) {
 }
 
 function appHandler(req, res) {
+  const originalUrl = req.headers['x-vercel-original-url'] || req.headers['x-forwarded-uri'];
+  if (originalUrl && String(originalUrl).startsWith('/api/')) req.url = String(originalUrl);
   if (req.url.startsWith('/api/')) return handleApi(req, res);
+  if (process.env.VERCEL && req.url.startsWith('/')) {
+    req.url = '/api' + req.url;
+    return handleApi(req, res);
+  }
   return serveStatic(req, res);
 }
 
