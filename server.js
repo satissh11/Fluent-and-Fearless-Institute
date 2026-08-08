@@ -92,6 +92,12 @@ function send(res, status, data, extraHeaders = {}) {
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
+    if (req.body !== undefined) {
+      if (typeof req.body === 'string') {
+        try { return resolve(req.body ? JSON.parse(req.body) : {}); } catch (e) { return reject(e); }
+      }
+      return resolve(req.body);
+    }
     let body = '';
     req.on('data', chunk => {
       body += chunk;
@@ -100,6 +106,7 @@ function readBody(req) {
     req.on('end', () => {
       try { resolve(body ? JSON.parse(body) : {}); } catch (error) { reject(error); }
     });
+    req.on('error', reject);
   });
 }
 
