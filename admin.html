@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -180,6 +180,10 @@ async function api(path, options = {}) {
     const text = await res.text();
     let data = {};
     try { data = text ? JSON.parse(text) : {}; } catch (error) { data = { error: text || 'Request failed' }; }
+    if (res.status === 401) {
+        adminLogout();
+        throw new Error('Session expired. Please log in again.');
+    }
     if (!res.ok) throw new Error(data.error || 'Request failed');
     return data;
 }
