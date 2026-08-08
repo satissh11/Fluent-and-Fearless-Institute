@@ -770,9 +770,7 @@ function appHandler(req, res) {
   return serveStatic(req, res);
 }
 
-if (process.env.VERCEL) {
-  module.exports = appHandler;
-} else {
+if (require.main === module) {
   setInterval(() => { runWeeklyVisitorReportIfDue().catch(error => console.warn('Weekly visitor report failed:', error.message)); }, 60 * 60 * 1000);
   runWeeklyVisitorReportIfDue().catch(error => console.warn('Weekly visitor report failed:', error.message));
 
@@ -780,4 +778,6 @@ if (process.env.VERCEL) {
     console.log('Fluent & Fearless portal running at http://localhost:' + PORT);
     console.log('Admin panel: http://localhost:' + PORT + '/admin.html');
   });
+} else {
+  module.exports = appHandler;
 }
