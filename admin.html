@@ -9,6 +9,19 @@
         tailwind.config = { theme: { extend: { colors: { primary: '#FF6B35', 'secondary-blue': '#004B87', surface: '#F8FAFC' }, fontFamily: { display: ['Outfit', 'sans-serif'] } } } }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { color-scheme: light; }
+        .admin-section { scroll-margin-top: 92px; }
+        .admin-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 18px; box-shadow: 0 8px 24px rgba(15, 23, 42, .05); }
+        .admin-input { width: 100%; border: 1px solid #cbd5e1; border-radius: 11px; padding: 10px 12px; outline: none; background: #fff; }
+        .admin-input:focus { border-color: #ff6b35; box-shadow: 0 0 0 3px rgba(255, 107, 53, .12); }
+        .admin-action { border-radius: 10px; padding: 9px 12px; font-size: 12px; font-weight: 800; transition: transform .15s ease, opacity .15s ease; }
+        .admin-action:hover { transform: translateY(-1px); opacity: .9; }
+        .media-item { border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px; background: #f8fafc; }
+        .media-preview { height: 150px; border-radius: 12px; overflow: hidden; background: #e2e8f0; }
+        .status-ok { color: #047857; }
+        .status-error { color: #dc2626; }
+    </style>
 </head>
 <body class="bg-surface text-slate-900 font-display min-h-screen">
     <main class="max-w-7xl mx-auto px-4 py-10">
@@ -33,14 +46,14 @@
         </section>
 
         <section id="adminApp" class="hidden space-y-6">
-            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm sticky top-2 z-20">
+            <div class="admin-card p-3 sticky top-2 z-20">
                 <div class="flex flex-wrap gap-2">
-                    <a href="#subscriptions" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Subscriptions</a>
-                    <a href="#reports" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Reports</a>
-                    <a href="#photos" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Page Photos</a>
-                    <a href="#reviews" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Reviews</a>
-                    <a href="#gallery-admin" class="px-4 py-2 rounded-xl bg-primary text-white text-sm font-bold">Gallery</a>
-                    <a href="#page-editor" class="px-4 py-2 rounded-xl bg-slate-100 text-secondary-blue text-sm font-bold">Page Editor</a>
+                    <a href="#subscriptions" class="admin-action bg-slate-100 text-secondary-blue">Subscriptions</a>
+                    <a href="#reports" class="admin-action bg-slate-100 text-secondary-blue">Reports</a>
+                    <a href="#photos" class="admin-action bg-slate-100 text-secondary-blue">Page Photos</a>
+                    <a href="#reviews" class="admin-action bg-slate-100 text-secondary-blue">Reviews</a>
+                    <a href="#gallery-admin" class="admin-action bg-primary text-white">Gallery Media</a>
+                    <a href="#page-editor" class="admin-action bg-slate-100 text-secondary-blue">Page Editor</a>
                 </div>
             </div>
 
@@ -111,23 +124,25 @@
             </section>
 
             <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                <div id="reviews" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
+                <div id="reviews" class="admin-card p-6 admin-section">
                     <h2 class="text-xl font-bold text-secondary-blue mb-4">Manage Reviews</h2>
                     <p class="text-sm text-slate-500 mb-4">Testimonials reviews yahan sirf delete kar sakte hain. Naya review public testimonials form se aayega.</p>
                     <div id="reviewRows" class="mt-5 space-y-3 max-h-[520px] overflow-y-auto"></div>
                 </div>
 
-                <div id="gallery-admin" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
-                    <h2 class="text-xl font-bold text-secondary-blue mb-4">Manage Gallery</h2>
+                <div id="gallery-admin" class="admin-card p-6 admin-section xl:col-span-2">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div><h2 class="text-xl font-bold text-secondary-blue">Manage Gallery Media</h2><p class="text-sm text-slate-500 mt-1">Image ya video upload karein. Neeche existing media ko edit, replace ya delete karein.</p></div>
+                        <button onclick="loadContentData()" class="admin-action border border-slate-200 text-secondary-blue">Refresh</button>
+                    </div>
                     <div class="space-y-3">
-                        <input id="mediaTitle" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" placeholder="Title" />
-                        <input id="mediaImage" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary" />
-                        <textarea id="mediaText" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary min-h-24" placeholder="Description"></textarea>
-                        <select id="mediaType" class="w-full border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-primary"><option value="photo">Image</option><option value="video">Video</option><option value="event">Event</option></select>
-                        <button onclick="addMedia()" class="w-full bg-primary text-white font-bold py-3 rounded-xl">Upload Gallery Media</button>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3"><input id="mediaTitle" class="admin-input" placeholder="Media title" /><select id="mediaType" class="admin-input"><option value="photo">Image</option><option value="video">Video</option><option value="event">Event</option></select></div>
+                        <input id="mediaImage" type="file" accept="image/*,video/mp4,video/webm,video/quicktime" class="admin-input" />
+                        <textarea id="mediaText" class="admin-input min-h-20" placeholder="Short description"></textarea>
+                        <button onclick="addMedia()" class="admin-action bg-primary text-white w-full">Upload New Media</button>
                         <p id="mediaMessage" class="text-sm text-slate-500"></p>
                     </div>
-                    <div id="mediaRows" class="mt-5 space-y-3 max-h-[520px] overflow-y-auto"></div>
+                    <div id="mediaRows" class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                 </div>
 
                 <div id="page-editor" class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm scroll-mt-24">
@@ -205,10 +220,11 @@ function slotInputId(slot) {
 
 function fileToDataUrl(file) {
     return new Promise((resolve, reject) => {
-        if (!file) return reject(new Error('Image file select karein.'));
+        if (!file) return reject(new Error('Image ya video file select karein.'));
+        if (file.size > 5.5 * 1024 * 1024) return reject(new Error('File 5.5 MB se chhoti honi chahiye.'));
         const reader = new FileReader();
         reader.onload = () => {
-            if (file.type === 'image/gif') return resolve(reader.result);
+            if (file.type.startsWith('video/') || file.type === 'image/gif') return resolve(reader.result);
             const image = new Image();
             image.onload = () => {
                 const maxSize = 1400;
@@ -355,20 +371,22 @@ async function loadPageImages() {
 }
 
 async function replacePageImage(slot) {
-    const input = document.getElementById(slotInputId(slot));
-    const imageData = await fileToDataUrl(input.files[0]);
-    await api('/api/admin/page-images', { method: 'POST', body: JSON.stringify({ slot, imageData }) });
-    loadPageImages();
+    try {
+        const input = document.getElementById(slotInputId(slot));
+        const imageData = await fileToDataUrl(input.files[0]);
+        await api('/api/admin/page-images', { method: 'POST', body: JSON.stringify({ slot, imageData }) });
+        await loadPageImages();
+    } catch (error) { alert(error.message); }
 }
 
 async function deletePageImage(slot) {
-    await api('/api/admin/page-images?slot=' + encodeURIComponent(slot), { method: 'DELETE' });
-    loadPageImages();
+    if (!confirm('Is page photo ko delete karna hai?')) return;
+    try { await api('/api/admin/page-images?slot=' + encodeURIComponent(slot), { method: 'DELETE' }); await loadPageImages(); } catch (error) { alert(error.message); }
 }
 
 async function deleteReview(id) {
-    await api('/api/admin/reviews?id=' + encodeURIComponent(id), { method: 'DELETE' });
-    loadContentData();
+    if (!confirm('Is review ko delete karna hai?')) return;
+    try { await api('/api/admin/reviews?id=' + encodeURIComponent(id), { method: 'DELETE' }); await loadContentData(); } catch (error) { alert(error.message); }
 }
 
 function renderAdminReviews(reviews) {
@@ -397,8 +415,8 @@ async function addMedia() {
 }
 
 async function deleteMedia(id) {
-    await api('/api/admin/gallery?id=' + encodeURIComponent(id), { method: 'DELETE' });
-    loadContentData();
+    if (!confirm('Is gallery media ko delete karna hai?')) return;
+    try { await api('/api/admin/gallery?id=' + encodeURIComponent(id), { method: 'DELETE' }); await loadContentData(); } catch (error) { alert(error.message); }
 }
 
 function mediaFieldId(id, field) {
@@ -427,13 +445,15 @@ function renderAdminGallery(items) {
     const target = document.getElementById('mediaRows');
     target.innerHTML = items.map(item => {
         const typeOptions = ['photo', 'video', 'event'].map(type => '<option value="' + type + '"' + (item.type === type ? ' selected' : '') + '>' + type + '</option>').join('');
-        return '<div class="border border-slate-100 rounded-xl p-3 space-y-3">' +
-            '<div class="flex gap-3"><img src="' + escapeHtml(item.image) + '" class="w-20 h-20 object-cover rounded-lg bg-slate-100" /><div class="flex-1"><p class="font-bold text-secondary-blue">' + escapeHtml(item.title) + '</p><p class="text-xs text-slate-400">' + escapeHtml(item.id) + '</p></div></div>' +
-            '<input id="' + mediaFieldId(item.id, 'title') + '" value="' + escapeHtml(item.title) + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary" />' +
-            '<select id="' + mediaFieldId(item.id, 'type') + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary">' + typeOptions + '</select>' +
-            '<textarea id="' + mediaFieldId(item.id, 'text') + '" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary min-h-20">' + escapeHtml(item.text) + '</textarea>' +
-            '<input id="' + mediaFieldId(item.id, 'file') + '" type="file" accept="image/*" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-primary" />' +
-            '<div class="flex gap-2"><button data-media-id="' + escapeHtml(item.id) + '" class="update-media flex-1 bg-secondary-blue text-white text-xs font-bold py-2 rounded-xl">Update</button><button data-media-id="' + escapeHtml(item.id) + '" class="delete-media flex-1 border border-red-200 text-red-600 text-xs font-bold py-2 rounded-xl">Delete</button></div>' +
+        const preview = item.type === 'video' && String(item.image).startsWith('data:video/') ? '<video src="' + escapeHtml(item.image) + '" controls class="w-full h-full object-cover"></video>' : '<img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" class="w-full h-full object-cover" />';
+        return '<div class="media-item space-y-3">' +
+            '<div class="media-preview">' + preview + '</div>' +
+            '<div class="flex items-center justify-between gap-2"><p class="font-bold text-secondary-blue truncate">' + escapeHtml(item.title) + '</p><span class="text-[11px] font-bold uppercase text-slate-400">' + escapeHtml(item.type) + '</span></div>' +
+            '<input id="' + mediaFieldId(item.id, 'title') + '" value="' + escapeHtml(item.title) + '" class="admin-input text-sm" placeholder="Title" />' +
+            '<select id="' + mediaFieldId(item.id, 'type') + '" class="admin-input text-sm">' + typeOptions + '</select>' +
+            '<textarea id="' + mediaFieldId(item.id, 'text') + '" class="admin-input text-sm min-h-16" placeholder="Description">' + escapeHtml(item.text) + '</textarea>' +
+            '<input id="' + mediaFieldId(item.id, 'file') + '" type="file" accept="image/*,video/mp4,video/webm,video/quicktime" class="admin-input text-sm" />' +
+            '<div class="flex gap-2"><button data-media-id="' + escapeHtml(item.id) + '" class="update-media admin-action flex-1 bg-secondary-blue text-white">Save Update</button><button data-media-id="' + escapeHtml(item.id) + '" class="delete-media admin-action flex-1 border border-red-200 text-red-600">Delete</button></div>' +
             '</div>';
     }).join('') || '<p class="text-sm text-slate-400">No gallery items yet.</p>';
     target.querySelectorAll('.update-media').forEach(button => button.addEventListener('click', () => updateMedia(button.dataset.mediaId)));

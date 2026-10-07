@@ -4,6 +4,15 @@
   "functions": {
     "api/index.js": {
       "includeFiles": "portal-db.json"
+    },
+    "api/[...path].js": {
+      "includeFiles": "portal-db.json"
+    },
+    "api/admin/login.js": {
+      "includeFiles": "portal-db.json"
+    },
+    "api/admin/[...path].js": {
+      "includeFiles": "portal-db.json"
     }
   },
   "rewrites": [
@@ -16,8 +25,7 @@
     { "source": "/dashboard",       "destination": "/dashboard.html" },
     { "source": "/online-practice", "destination": "/online-practice.html" },
     { "source": "/robots.txt",      "destination": "/robots.txt" },
-    { "source": "/sitemap.xml",     "destination": "/sitemap.xml" },
-    { "source": "/api/(.*)",        "destination": "/api/index" }
+    { "source": "/sitemap.xml",     "destination": "/sitemap.xml" }
   ],
   "crons": [
     {

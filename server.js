@@ -342,11 +342,12 @@ async function runWeeklyVisitorReportIfDue(force = false) {
 }
 
 function saveUploadedDataUrl(dataUrl, prefix = 'image') {
-  const match = String(dataUrl || '').match(/^data:(image\/(png|jpeg|jpg|webp|gif));base64,(.+)$/);
-  if (!match) throw new Error('Valid image file required');
-  const normalizedDataUrl = 'data:' + match[1] + ';base64,' + match[3];
-  const ext = match[2] === 'jpeg' ? 'jpg' : match[2];
-  const bytes = Buffer.from(match[3], 'base64');
+  const match = String(dataUrl || '').match(/^data:((?:image|video)\/(?:png|jpeg|jpg|webp|gif|mp4|webm|quicktime));base64,(.+)$/i);
+  if (!match) throw new Error('Valid image or video file required');
+  const normalizedDataUrl = 'data:' + match[1] + ';base64,' + match[2];
+  const mimeSubtype = match[1].split('/')[1].toLowerCase();
+  const ext = mimeSubtype === 'jpeg' || mimeSubtype === 'quicktime' ? (mimeSubtype === 'quicktime' ? 'mov' : 'jpg') : mimeSubtype;
+  const bytes = Buffer.from(match[2], 'base64');
   if (!bytes.length) throw new Error('Empty image file');
   if (bytes.length > 6 * 1024 * 1024) throw new Error('Image must be under 6MB');
   if (process.env.VERCEL || process.env.STORE_UPLOADS_IN_DB === '1') return normalizedDataUrl;
